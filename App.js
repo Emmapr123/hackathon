@@ -8,6 +8,8 @@ import { SliderScreen } from './components/screens/slider-screen';
 import InsightScreen from './components/screens/insight-screen'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import GreenLightScreen from './components/screens/greenlight-screen'
+
 
 const Tab = createBottomTabNavigator();
 
@@ -19,8 +21,9 @@ export default function App() {
     <ApplicationProvider {...eva} theme={eva.light}>
       <NavigationContainer>
       <Tab.Navigator>
-        <Tab.Screen name="Home" component={InsightScreen} />
+        <Tab.Screen name="Budget Tracker" component={InsightScreen} />
         <Tab.Screen name="Settings" component={SliderScreen} />
+        <Tab.Screen name="Analytics" component={GreenLightScreen} />
       </Tab.Navigator>
     </NavigationContainer>
     </ApplicationProvider>

@@ -9,7 +9,6 @@ const InsightScreen = () => {
 
   return (
     <View>
-      <Text>Hello world</Text>
       <TabBarSimple
         selectedIndex={selectedIndex}
         setSelectedIndex={setSelectedIndex}
