@@ -7,13 +7,13 @@ const UsageBar = ({ percentage }) => {
       <AnimatedBar
         animated={false}
         length={100}
-        color={"#CDC7E5"}
+        color={"lightgray"}
         style={styles.views}
         axis={"width"}
       />
       <AnimatedBar
         animated={false}
-        color={"#7776BC"}
+        color={"#006945"}
         length={percentage}
         style={styles.bookings}
         axis={"width"}

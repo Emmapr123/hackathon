@@ -3,9 +3,9 @@ import { View, StyleSheet } from "react-native";
 import { BudgetTracker } from "../molecules/budget-tracker";
 
 const SliderTemplate = () => {
-  const [showers, setShowers] = useState(2);
+  const [showers, setShowers] = useState(10);
   const [temp, setTemp] = useState(19);
-  const [wash, setWash] = useState(2);
+  const [wash, setWash] = useState(40);
 
   const getShowers = (event) => {
     setShowers(+event);
@@ -22,25 +22,28 @@ const SliderTemplate = () => {
   return (
     <View style={styles.contianer}>
       <BudgetTracker
-        title={"Showers per week"}
+        title={"How long do you typically shower for?"}
+        metric={'min'}
         value={showers}
         getValue={getShowers}
         minValue={0}
-        maxValue={14}
+        maxValue={60}
       />
       <BudgetTracker
-        title={"Average Temperature"}
+        title={"What’s the average temperature you set the thermometer to?"}
         value={temp}
+        metric={'C'}
         getValue={getTemp}
         minValue={0}
         maxValue={25}
       />
       <BudgetTracker
-        title={"Average amount of washes"}
+        title={"What’s the average temparature you set your washing machine to?"}
         value={wash}
+        metric={'C'}
         getValue={getWash}
         minValue={0}
-        maxValue={25}
+        maxValue={90}
       />
     </View>
   );

@@ -14,7 +14,7 @@ const SliderComponent = ({value, getValue, minValue, maxValue}) => {
         trackStyle={styles.slider}
         trackClickable={true}
         thumbStyle={styles.thumb}
-        minimumTrackTintColor={"#265804"}
+        minimumTrackTintColor={"#006945"}
         onValueChange={value => getValue(value)}
       />
     </View>
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: "gray",
   },
   thumb: {
-    backgroundColor: "#265804",
+    backgroundColor: "#006945",
   },
 });
 
