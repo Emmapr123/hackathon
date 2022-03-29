@@ -1,30 +1,16 @@
 import { StyleSheet, View } from "react-native";
 import { Text, Layout } from '@ui-kitten/components';
-import BottomNav from './../BottomNav';
+import TabBarSimple from './../molecules/top-nav';
+import React from 'react';
+import ViewPagerSimple from './../molecules/schedule-pager.js'
+
 const InsightScreen = () => {
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
     return(
         <View>
-            <Layout>
-                <Text style={styles.title} category='h4'> Budget Insights</Text>
-                <Layout style={styles.layout} level='4'>
-                <Text>4</Text>
-
-                </Layout>
-
-                <Layout style={styles.layout} level='3'>
-                <Text>3</Text>
-                </Layout>
-
-                <Layout style={styles.layout} level='2'>
-                <Text>2</Text>
-                </Layout>
-
-                <Layout style={styles.layout} level='1'>
-                <Text>1</Text>
-                </Layout>
-                <BottomNav />
-            </Layout>
+            <TabBarSimple selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex}  />
+            <ViewPagerSimple selectedIndex={selectedIndex} setSelectedIndex={setSelectedIndex} />
         </View>
     )
 };
