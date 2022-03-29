@@ -46,7 +46,7 @@ const InsightItemList = () => {
           labels={['Actual', 'Target']}
           width={windowWidth - 80}
           height={250}
-          barRadius={5}
+          barRadius={15}
           barColor={'#0b9828'}
           baseConfig={{
             hasYAxisBackgroundLines: true,
