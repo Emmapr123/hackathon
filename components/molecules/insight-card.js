@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View,  Dimensions} from 'react-native';
 import { Card, List,Icon, Text, Button, Modal } from '@ui-kitten/components';
 import HorizontalBarGraph from '@chartiful/react-native-horizontal-bar-graph'
+import LottieView from 'lottie-react-native';
 
 import ContributionGraphCard from "./../molecules/contribution-graph";
 const data = new Array(8).fill({
@@ -68,7 +69,9 @@ const InsightItemList = () => {
             }
           }}
         />
-
+        <View style={{height: 50, marginTop: -40, alignItems: 'center'}}>
+        <LottieView resizeMode={'cover'} style={{height: 70}} source={require('./../../assets/ovo-heart.json')} autoPlay loop />
+        </View>
       
        { /*<Card style={styles.card} status='success'>
                 <Text>Awesome! You're right on track!</Text>
