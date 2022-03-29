@@ -1,14 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { DailyWeatherForecast } from './components/atoms/daily-weather-forecast';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, Layout, Text, IconRegistry } from '@ui-kitten/components';
+import BottomNavigationTabThemingShowcase from './components/BottomNav';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Hi Andrew!</Text>
-      <DailyWeatherForecast />
-      <StatusBar style="auto" />
-    </View>
+    <>
+    <IconRegistry icons={EvaIconsPack}/>
+    <ApplicationProvider {...eva} theme={eva.light}>
+      <View style={styles.container}>
+        <Text style={styles.text}>Hi Andrew22!</Text>
+        <DailyWeatherForecast />
+        <StatusBar style="auto" />
+        <BottomNavigationTabThemingShowcase />
+      </View>
+    </ApplicationProvider>
+    </>
   );
 }
 
