@@ -2,19 +2,19 @@ import React from "react";
 import { Slider } from "@miblanchard/react-native-slider";
 import { StyleSheet, View } from "react-native";
 
-const SliderComponent = ({value, getValue}) => {
+const SliderComponent = ({value, getValue, minValue, maxValue}) => {
 
   return (
     <View style={styles.container}>
       <Slider
         value={value}
-        maximumValue={10}
-        minimumValue={0}
+        maximumValue={maxValue}
+        minimumValue={minValue}
         step={1}
         trackStyle={styles.slider}
         trackClickable={true}
         thumbStyle={styles.thumb}
-        minimumTrackTintColor={"#333CFF"}
+        minimumTrackTintColor={"#265804"}
         onValueChange={value => getValue(value)}
       />
     </View>
@@ -23,15 +23,15 @@ const SliderComponent = ({value, getValue}) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: 200,
+    // width: '80%',
     alignItems: "stretch",
     justifyContent: "center",
   },
   slider: {
-    backgroundColor: "white",
+    backgroundColor: "gray",
   },
   thumb: {
-    backgroundColor: "#333CFF",
+    backgroundColor: "#265804",
   },
 });
 
