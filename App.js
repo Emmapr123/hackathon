@@ -5,20 +5,24 @@ import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import BottomNavigationTabThemingShowcase from './components/BottomNav';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { SliderScreen } from './components/screens/slider-screen';
-import { TargetTracer } from './components/atoms/target-tracer';
+import InsightScreen from './components/screens/insight-screen'
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+const Tab = createBottomTabNavigator();
 
 
 export default function App() {
   return (
-    <>
+   <>
     <IconRegistry icons={EvaIconsPack}/>
     <ApplicationProvider {...eva} theme={eva.light}>
-      <View style={styles.container}>
-        <SliderScreen />
-        <TargetTracer />
-        <StatusBar style="auto" />
-        <BottomNavigationTabThemingShowcase />
-      </View>
+      <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={InsightScreen} />
+        <Tab.Screen name="Settings" component={SliderScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
     </ApplicationProvider>
     </>
   );

@@ -19,7 +19,7 @@ const SliderScreen = () => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "90%",
+    height: "100%",
     backgroundColor: "#fff",
     padding: "10%",
     justifyContent: "space-between",

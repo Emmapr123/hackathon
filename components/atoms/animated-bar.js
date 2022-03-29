@@ -1,19 +1,17 @@
 import React, { useCallback, useEffect, useMemo } from "react";
 import { Animated, Easing, StyleSheet } from "react-native";
-import { useTheme } from "../../context";
 
 const ANIMATION_DEFAULT_DURATION = 1000;
 const ANIMATION_DEFAULT_BOUNCINIESS = 0.8;
 
 function AnimatedBar(props) {
-  const theme = useTheme();
   const {
-    color = theme.colors.black,
+    color = "black",
     length,
     duration = ANIMATION_DEFAULT_DURATION,
     style,
     animated = true,
-    thickness = theme.height.animatedBar,
+    thickness = 12,
     bounciness = ANIMATION_DEFAULT_BOUNCINIESS,
     axis = "width",
   } = props;
