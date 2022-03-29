@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ScrollView } from "react-native";
 import { Text } from "@ui-kitten/components";
 import TabBarSimple from "./../molecules/top-nav";
 import React from "react";
