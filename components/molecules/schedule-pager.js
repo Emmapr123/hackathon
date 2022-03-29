@@ -10,6 +10,7 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex }) => {
       onSelect={(index) => setSelectedIndex(index)}
     >
       <Layout style={styles.tab} level="2">
+        <Text style={styles.text}>Spend in £</Text>
         <ScrollView directionalLockEnabled={true}>
           <UsageTimeContainer time={"Mon"} percentage={35} amount={3.5} />
           <UsageTimeContainer time={"Tue"} percentage={35} amount={3.5} />
@@ -21,7 +22,8 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex }) => {
         </ScrollView>
       </Layout>
       <Layout style={styles.tab} level="2">
-        <ScrollView>
+        <Text style={styles.text}>Spend in £</Text>
+        <ScrollView directionalLockEnabled={true}>
           <UsageTimeContainer time={"Jan"} percentage={35} amount={3.5} />
           <UsageTimeContainer time={"Feb"} percentage={35} amount={3.5} />
           <UsageTimeContainer time={"Mar"} percentage={35} amount={3.5} />
@@ -46,6 +48,9 @@ const styles = StyleSheet.create({
     width: "95%",
     alignItems: "center",
     justifyContent: "center",
+  },
+  text: {
+    fontSize: 24,
   },
 });
 
