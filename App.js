@@ -20,6 +20,7 @@ export default function App() {
       <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen name="Home" component={InsightScreen} />
+        <Tab.Screen name="Settings" component={SliderScreen} />
       </Tab.Navigator>
     </NavigationContainer>
     </ApplicationProvider>
