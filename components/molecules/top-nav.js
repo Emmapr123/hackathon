@@ -9,9 +9,8 @@ const TabBarSimple = ({selectedIndex, setSelectedIndex}) => {
         <TabBar
         selectedIndex={selectedIndex}
         onSelect={index => setSelectedIndex(index)}>
-        <Tab title='Daily'/>
+        <Tab title='Weekly'/>
         <Tab title='Monthly'/>
-        <Tab title='Yearly'/>
         </TabBar>
     </>
   );

@@ -1,12 +1,16 @@
 import { View, Text, StyleSheet } from "react-native";
 import { UsageBar } from "../molecules/usage-bar";
 
-const UsageTimeContainer = ({time, percentage, amount}) => {
+const UsageTimeContainer = ({ time, percentage, amount }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{time}</Text>
-      <UsageBar {...{percentage}} />
-      <Text stlye={styles.text}>£{amount}</Text>
+      <View style={{ width: 40 }}>
+        <Text style={styles.text}>{time}</Text>
+      </View>
+      <UsageBar {...{ percentage }} />
+      <View style={{ width: 40 }}>
+        <Text stlye={styles.text}>£{amount}</Text>
+      </View>
     </View>
   );
 };
@@ -15,9 +19,9 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     flexDirection: "row",
+    width: "100%",
     marginTop: 20,
-    marginHorizontal: 5,
-    justifyContent: "space-between",
+    justifyContent: "space-around",
   },
   text: {
     fontSize: 18,

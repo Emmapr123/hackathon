@@ -8,7 +8,7 @@ const RemainingBudget = () => {
             <Layout
             style={styles.tab}
             >
-                <Text category='h6'>Credit Remaining</Text>
+                <Text category='h6'>Days Remaining</Text>
                 <ProgressCircle
                     style={ { height: 150 } }
                     progress={ 0.7 }
