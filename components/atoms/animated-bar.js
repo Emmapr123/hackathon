@@ -11,7 +11,7 @@ function AnimatedBar(props) {
     duration = ANIMATION_DEFAULT_DURATION,
     style,
     animated = true,
-    thickness = 12,
+    thickness = 7,
     bounciness = ANIMATION_DEFAULT_BOUNCINIESS,
     axis = "width",
   } = props;

@@ -7,16 +7,19 @@ import {
   TouchableOpacity,
   View,
   Image,
-  TextInput,
 } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { EstimatedAmount } from "../atoms/estimated-amount";
+import { SpendingModal } from "../atoms/spening-modal";
 import { SliderTemplate } from "../templates/information-template";
 
 const SliderScreen = () => {
-  const naviagtion = useNavigation();
-  const [budget, setBudget] = useState("123");
   const [checked, setChecked] = useState("first");
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const getModalVisible = (event) => {
+      setModalVisible(+event)
+  }
 
   return (
     <ScrollView style={styles.container}>
@@ -60,6 +63,7 @@ const SliderScreen = () => {
                 display: "flex",
                 flexDirection: "row",
                 alignItems: "center",
+                marginBottom: 25,
               }}
             >
               <RadioButton
@@ -85,7 +89,7 @@ const SliderScreen = () => {
           <EstimatedAmount amount={"£123"} />
           <TouchableOpacity
             style={styles.button}
-            onPress={() => naviagtion.navigate("Home")}
+            onPress={() => setModalVisible(true)}
           >
             <Text style={{ color: "white", fontSize: 28, fontWeight: "700" }}>
               Set budget
@@ -93,6 +97,9 @@ const SliderScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
+      {modalVisible ? (
+        <SpendingModal {...{ modalVisible, getModalVisible }} />
+      ) : undefined}
     </ScrollView>
   );
 };
