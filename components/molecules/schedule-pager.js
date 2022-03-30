@@ -14,7 +14,6 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
 
   const { budgetAndActualHistory } = month;
 
-  console.log(budgetAndActualHistory);
   return (
     <Layout style={styles.tab} level="2">
       <View style={styles.questionsBox}>
@@ -26,25 +25,6 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
           periodElapsedDays={month.periodElapsedDays}
         />
       </View>
-      <Text style={styles.text}>Spend in £</Text>
-      <ScrollView directionalLockEnabled={true} style={{ height: 250 }}>
-        {budgetAndActualHistory.map((item, i) => {
-          let percentage = (item.actualGBP / item.budgetGBP) * 100;
-          if (percentage > 100) {
-            percentage = 100;
-          }
-          console.log({ percentage });
-          return (
-            <UsageTimeContainer
-              key={item.month}
-              time={item.month.substring(0, 3).toUpperCase()}
-              percentage={percentage}
-              budgetAmount={item.budgetGBP.toFixed(0)}
-              actualAmount={item.actualGBP.toFixed(0)}
-            />
-          );
-        })}
-      </ScrollView>
     </Layout>
   );
 };
