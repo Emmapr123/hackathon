@@ -41,11 +41,13 @@ const RemainingBudget = ({ progress, spentAmount, budgetAmount, periodElapsedDay
         </Card>
       ) : progress < 1 ? (
         <Card style={styles.card} status="warning">
-          <Text>You might be out of budget soon</Text>
+          <Text>You might be out of budget soon.</Text>
+          <Text>Check out your insights to stop you going over.</Text>
         </Card>
       ) : (
         <Card style={styles.card} status="danger">
-          <Text>You are over budget</Text>
+          <Text>Oops! It looks like you are over budget. </Text>
+            <Text>Scroll down to find ways that we can help.</Text>
         </Card>
       )}
     </View>
