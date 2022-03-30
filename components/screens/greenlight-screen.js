@@ -13,10 +13,7 @@ const GreenLightScreen = ({ insightData }) => {
       "Start saving money and energy while taking a shower: install a water-efficient showerhead or a shower flow reducer. The best bit? These are usually free – check with your water company.",
   };
 
-  const showerData = {
-    actual: 22,
-    target: 20,
-  };
+  const showerData = insightData.month.insights.showerLengthMinutes
 
   const heating = {
     title: "Heating your home",
@@ -26,19 +23,15 @@ const GreenLightScreen = ({ insightData }) => {
     tipBody: "",
   };
 
-  const heatingData = {
-    actual: 100,
-    target: 44,
-  };
+  const heatingData = insightData.month.insights.thermostatTemperatureC
+  
   const Washing = {
     title: "Washing machine",
     subTitle: "This is the electricity used to power your washign machine.",
   };
 
-  const washingData = {
-    actual: 12,
-    target: 50,
-  };
+  const washingData = insightData.month.insights.washingTemperatureC
+
 
   return (
     <ScrollView>
