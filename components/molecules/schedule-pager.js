@@ -20,7 +20,7 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
     >
       <Layout style={styles.tab} level="2">
       <View style={styles.questionsBox}>
-        <RemainingBudget progress={weekPercentageBudget} spentAmount={week.actualSoFarInPeriod.moneyGBP} budgetAmount={week.budgetSoFarInPeriod.moneyGBP} remainingDays={remainingDays}/>
+        <RemainingBudget progress={weekPercentageBudget} spentAmount={Math.round(week.actualSoFarInPeriod.moneyGBP)} budgetAmount={Math.round(week.budgetSoFarInPeriod.moneyGBP)} remainingDays={remainingDays}/>
       </View>
         <Text style={styles.text}>Spend in £</Text>
         <ScrollView directionalLockEnabled={true}>
@@ -35,7 +35,7 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
       </Layout>
       <Layout style={styles.tab} level="2">
       <View style={styles.questionsBox}>
-      <RemainingBudget progress={monthPercentageBudget} spentAmount={month.actualSoFarInPeriod.moneyGBP} budgetAmount={month.budgetSoFarInPeriod.moneyGBP} remainingDays={remainingDays}/>
+      <RemainingBudget progress={monthPercentageBudget} spentAmount={Math.round(month.actualSoFarInPeriod.moneyGBP)} budgetAmount={Math.round(month.budgetSoFarInPeriod.moneyGBP)} remainingDays={remainingDays}/>
       </View>
         <Text style={styles.text}>Spend in £</Text>
         <ScrollView directionalLockEnabled={true}>

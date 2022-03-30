@@ -19,8 +19,8 @@ const GreenLightScreen = ({ insightData }) => {
     title: "Heating your home",
     subTitle:
       "This is the energy used for central heating and controlled by a thermostat.",
-    tipTitle: "",
-    tipBody: "",
+    tipTitle: "Defy those draughts",
+    tipBody: `Keeping heat in the house counts for more than you’d think. Basic draught proofing is easy, with strips you can stick around window frames, or a draught excluder keeps that warm air inside.`,
   };
 
   const heatingData = insightData.month.insights.thermostatTemperatureC
@@ -28,6 +28,9 @@ const GreenLightScreen = ({ insightData }) => {
   const Washing = {
     title: "Washing machine",
     subTitle: "This is the electricity used to power your washign machine.",
+    tipTitle: 'Washing Tips',
+    tipBody: `Using the washing machine at 30°C max equals £8 off your bills and 40% less on its electricity use per year. Bringing you just as many fresh, clean jumpers.
+    Washing your clothes on the lowest cycle can save you energy and money – without damaging them. So your favourite t-shirt lasts much, much longer.`
   };
 
   const washingData = insightData.month.insights.washingTemperatureC

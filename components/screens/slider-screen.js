@@ -16,7 +16,7 @@ import { SliderTemplate } from "../templates/information-template";
 import LoadingScreen from "./loading-screen";
 import { getBudgetFormData, postInsightData, getTrackData } from "./../../functions/energy-api";
 
-const SliderScreen = ({setInsightData}) => {
+const SliderScreen = ({setInsightData, email}) => {
   const [checked, setChecked] = useState("weekly");
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
@@ -31,10 +31,10 @@ const SliderScreen = ({setInsightData}) => {
   const budgetSet = async () => {
     setLoading(true);
     setTimeout(async() => {
-      const trackRes = await postInsightData("laura.marshall@hotmail.com", formData.showerLength, formData.thermoTemp, formData.washingTemp);
+      const trackRes = await postInsightData(email, formData.showerLength, formData.thermoTemp, formData.washingTemp);
 
-      const trackWeekRes = await getTrackData("laura.marshall@hotmail.com", "week");
-      const trackMonthRes = await getTrackData("laura.marshall@hotmail.com", "month");
+      const trackWeekRes = await getTrackData(email, "week");
+      const trackMonthRes = await getTrackData(email, "month");
 
       setInsightData({
         week: trackWeekRes.data,
@@ -47,9 +47,9 @@ const SliderScreen = ({setInsightData}) => {
   };
 
   useEffect(async () => {
-    const resMonth = await getBudgetFormData("laura.marshall@hotmail.com", "month");
+    const resMonth = await getBudgetFormData(email, "month");
     setMonthFormData(resMonth.data);
-    const resWeek = await getBudgetFormData("laura.marshall@hotmail.com", "week");
+    const resWeek = await getBudgetFormData(email, "week");
 
     setWeekFormData(resWeek.data);
   }, []);

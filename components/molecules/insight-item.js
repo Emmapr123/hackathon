@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Dimensions } from "react-native";
+import { StyleSheet, View, Dimensions, Image } from "react-native";
 import { Card, Icon, Text, Button, Modal } from "@ui-kitten/components";
 import HorizontalBarGraph from "@chartiful/react-native-horizontal-bar-graph";
 import LottieView from "lottie-react-native";
@@ -69,7 +69,21 @@ const InsightItem = ({ data, insights }) => {
         onBackdropPress={() => setVisible(false)}
       >
         <Card disabled={true}>
-          <Text style={styles.header}>{data.tipTitle}</Text>
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: 'center'
+            }}
+          >
+            <Text style={styles.header}>{data.tipTitle}</Text>
+            <Image
+              source={require("./../../assets/bulb-icon.png")}
+              height={20}
+              width={20}
+            />
+          </View>
 
           <Text style={styles.body}>{data.tipBody}</Text>
 
