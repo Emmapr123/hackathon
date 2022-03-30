@@ -4,21 +4,15 @@ import { Card, List, Icon, Text, Button, Modal } from "@ui-kitten/components";
 import HorizontalBarGraph from "@chartiful/react-native-horizontal-bar-graph";
 import LottieView from "lottie-react-native";
 
-import ContributionGraphCard from "./../molecules/contribution-graph";
-const data = new Array(3).fill({
-  title: "Household device",
-});
-
 const windowWidth = Dimensions.get("window").width;
 const StarIcon = (props) => <Icon {...props} name="star" />;
-const InsightItemList = () => {
+const InsightItemList = ({ data }) => {
   const [visible, setVisible] = React.useState(false);
 
   const renderItemHeader = (headerProps, info) => (
     <View {...headerProps}>
-      <Text category="h6">
-        {info.item.title} {info.index + 1}
-      </Text>
+      <Text category="h6">{info.item.title}</Text>
+      <Text style={{ marginTop: 10 }}>{info.item.subTitle}</Text>
     </View>
   );
 
@@ -101,36 +95,12 @@ const InsightItemList = () => {
         onBackdropPress={() => setVisible(false)}
       >
         <Card disabled={true}>
-          <Text category="h4">Money Saving tips</Text>
+          <Text style={styles.header}>Go with the flow</Text>
 
-          <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sit
-            amet est aliquet, vestibulum orci at, feugiat nibh.{" "}
-          </Text>
-          <Text>
-            Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-            per inceptos himenaeos.
-          </Text>
-          <Text>
-            {" "}
-            Ut vel quam nulla. Integer a mollis leo. Etiam mattis ultrices ante,
-            a interdum turpis. Quisque et ex lobortis, dictum quam sed, dapibus
-            nunc. Aliquam vehicula, turpis eu faucibus ornare, diam justo
-            malesuada est, in euismod orci nisl sit amet felis.
-          </Text>
-          <Text>
-            Praesent consectetur placerat enim, eu iaculis elit malesuada sed.
-            Vestibulum id rhoncus sem, in ullamcorper metus.
-          </Text>
-
-          <Text>
-            Nam rutrum lacinia euismod. Nulla luctus varius euismod. Morbi
-            vehicula maximus elit in f. Praesent ac dolor augue. Pellentesque
-            iaculis turpis felis, ut dignissim tortor congue non..{" "}
-          </Text>
-          <Text>
-            Praesent consectetur placerat enim, eu iaculis elit malesuada sed.
-            Vestibulum id rhoncus sem, in ullamcorper metus.
+          <Text style={styles.body}>
+            Start saving money and energy while taking a shower: install a
+            water-efficient showerhead or a shower flow reducer.  The best bit?
+            These are usually free – check with your water company.
           </Text>
 
           <Button onPress={() => setVisible(false)} style={styles.button}>
@@ -154,7 +124,7 @@ const styles = StyleSheet.create({
   },
   item: {
     marginVertical: 4,
-    height: 265
+    // height: 350,
   },
   backdrop: {
     backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -168,5 +138,16 @@ const styles = StyleSheet.create({
     backgroundColor: "#0D8426",
     marginTop: 10,
     borderWidth: 0,
+  },
+  header: {
+    fontSize: 28,
+    marginVertical: 12,
+    fontWeight: "700",
+  },
+  body: {
+    fontSize: 18,
+    // marginTop: 12,
+    fontWeight: "400",
+    paddingBottom: 40,
   },
 });
