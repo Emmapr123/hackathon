@@ -30,8 +30,8 @@ const SliderScreen = () => {
 
 
   const getModalVisible = (event) => {
-      setModalVisible(+event)
-  }
+    setModalVisible(+event);
+  };
 
   useEffect(async () => {
     const resMonth = await getBudgetFormData('sam.roth@ovoenergy.com', 'month');
@@ -77,7 +77,6 @@ const SliderScreen = () => {
 
   return (
     <ScrollView style={styles.container}>
-        <BlurView intensity={100}>
       <Image
         source={require("../../assets/Header.png")}
         style={{ position: "absolute" }}
@@ -89,7 +88,6 @@ const SliderScreen = () => {
           to keep on top of your budget
         </Text>
       </View>
-      </BlurView>
       <View style={styles.questionsBox}>
         <View>
           <Text style={styles.questionsTitle}>Let’s start with your goals</Text>
@@ -158,7 +156,9 @@ const SliderScreen = () => {
         </View>
       </View>
       {modalVisible ? (
-        <SpendingModal {...{ modalVisible, getModalVisible }} />
+        <BlurView intensity={100}>
+          <SpendingModal {...{ modalVisible, getModalVisible }} />
+        </BlurView>
       ) : undefined}
     </ScrollView>
   );
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginHorizontal: 10,
     backgroundColor: "white",
-    borderRadius: 10,
+    borderRadius: 5,
     shadowColor: "gray",
     shadowRadius: 10,
     shadowOpacity: 10,
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 53,
-    width: "95%",
+    width: "100%",
     justifyContent: "center",
     alignItems: "center",
     alignSelf: "center",

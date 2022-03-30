@@ -1,4 +1,10 @@
-import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Text } from "@ui-kitten/components";
 import TabBarSimple from "./../molecules/top-nav";
 import React from "react";
@@ -21,17 +27,19 @@ const InsightScreen = () => {
         </Text>
       </View>
       <View style={styles.questionsBox}>
-        <Text>This months budget</Text>
-        <RemainingBudget progress={0.3} />
+        <RemainingBudget progress={0.4} />
       </View>
-      <TabBarSimple
-        selectedIndex={selectedIndex}
-        setSelectedIndex={setSelectedIndex}
-      />
-      <ViewPagerSimple
-        selectedIndex={selectedIndex}
-        setSelectedIndex={setSelectedIndex}
-      />
+      <View style={styles.box}>
+        <Text style={styles.header}>Estimated total spend</Text>
+        <TabBarSimple
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
+        <ViewPagerSimple
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
+      </View>
       <View style={styles.box}>
         <Text style={styles.header}>Dig into your insight</Text>
         <Text style={styles.body}>
@@ -39,13 +47,27 @@ const InsightScreen = () => {
           month.
         </Text>
         <TouchableOpacity
-            style={styles.button}
-            onPress={() => setModalVisible(true)}
-          >
-            <Text style={{ color: "white", fontSize: 28, fontWeight: "700" }}>
-              Set budget
-            </Text>
-          </TouchableOpacity>
+          style={styles.button}
+          // onPress={() => setModalVisible(true)}
+        >
+          <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
+            View other energy insights
+          </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.box}>
+        <Text style={styles.header}>We're here to help</Text>
+        <Text style={styles.body}>
+          If you’d like more support on your budget, you can reach out to us.
+        </Text>
+        <TouchableOpacity
+          style={styles.button}
+          // onPress={() => setModalVisible(true)}
+        >
+          <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
+            Get in touch
+          </Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -73,7 +95,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginHorizontal: 10,
     backgroundColor: "white",
-    borderRadius: 10,
+    borderRadius: 5,
     shadowColor: "gray",
     shadowRadius: 10,
     shadowOpacity: 10,
@@ -87,12 +109,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   box: {
-    padding: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+    marginTop: 20,
     marginHorizontal: 10,
     backgroundColor: "white",
     borderRadius: 10,
     shadowColor: "gray",
-    shadowRadius: 10,
+    shadowRadius: 5,
     shadowOpacity: 10,
     shadowOffset: {
       width: 5,
@@ -101,13 +125,13 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 18,
-    marginTop: 12,
+    marginVertical: 12,
     paddingHorizontal: 16,
     fontWeight: "700",
   },
   body: {
     fontSize: 18,
-    marginTop: 12,
+    // marginTop: 12,
     paddingHorizontal: 12,
     fontWeight: "400",
     paddingBottom: 40,
@@ -119,8 +143,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     backgroundColor: "#0D8426",
-    marginTop: 10,
-  }
+  },
 });
 
 export default InsightScreen;

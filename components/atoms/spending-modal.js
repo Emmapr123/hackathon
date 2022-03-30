@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/core";
-import { Modal } from "@ui-kitten/components";
+import { Button, Modal } from "@ui-kitten/components";
+import { BlurView } from "expo-blur";
 import {
   View,
   Text,
@@ -15,11 +16,13 @@ const SpendingModal = ({ modalVisible, getModalVisible }) => {
     getModalVisible(false);
     navigation.navigate("Budget Tracker");
   };
-  
+
   return (
     <View style={styles.centeredView}>
+      <View style={{backgroundColor: 'red', height: '100%', width: '100%', position: 'absolute', flex: 1, top: 1 }} />
       <Modal
         animationType="slide"
+        style={{height: '100%'}}
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
@@ -33,13 +36,14 @@ const SpendingModal = ({ modalVisible, getModalVisible }) => {
               Thank you for putting in your budget, we can now start tracking
               your goals
             </Text>
-            <View style={{ display: "flex", flexDirection: "row", justifyContent:'space-around' }}>
+            <View style={{ display: "flex", flexDirection: "row", marginTop: 25 }}>
               <TouchableOpacity
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => getModalVisible(false)}
               >
                 <Text style={styles.textStyle}>Hide Modal</Text>
               </TouchableOpacity>
+              <View style={{width: 100}}/>
               <TouchableOpacity
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => navigate()}
@@ -82,15 +86,15 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    borderRadius: 20,
+    borderRadius: 5,
     padding: 10,
     elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: "#006945",
+    backgroundColor: "#0D8426",
   },
   buttonClose: {
-    backgroundColor: "#006945",
+    backgroundColor: "#0D8426",
   },
   textStyle: {
     color: "white",
