@@ -1,9 +1,10 @@
 import { StyleSheet, View, Text } from "react-native";
 
-const EstimatedAmount = ({ amount }) => {
+const EstimatedAmount = ({ moneyAmount, carbonAmount }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.amount}>{amount}</Text>
+      <Text style={styles.amount}>£{moneyAmount}</Text>
+      <Text style={styles.amount}>CO2 {carbonAmount}</Text>
     </View>
   );
 };

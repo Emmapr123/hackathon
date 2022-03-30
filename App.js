@@ -33,16 +33,15 @@ export default function App() {
         <NavigationContainer>
           <Tab.Navigator>
             <Tab.Screen
-              name="Analytics"
-              component={GreenLightScreen}
+              name="Settings"
+              component={SliderScreen}
               options={{
-                tabBarLabelPosition: "below-icon",
                 activeTintColor: "#e91e63",
-                tabBarLabel: "Insights",
+                tabBarLabel: "Budget",
                 tabBarIcon: () => {
                   return (
                     <Image
-                      source={require("./assets/Group.png")}
+                      source={require("./assets/Budget.png")}
                       width={10}
                       height={10}
                     />
@@ -68,15 +67,16 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              name="Settings"
-              component={SliderScreen}
+              name="Analytics"
+              component={GreenLightScreen}
               options={{
+                tabBarLabelPosition: "below-icon",
                 activeTintColor: "#e91e63",
-                tabBarLabel: "Budget",
+                tabBarLabel: "Insights",
                 tabBarIcon: () => {
                   return (
                     <Image
-                      source={require("./assets/Budget.png")}
+                      source={require("./assets/Group.png")}
                       width={10}
                       height={10}
                     />

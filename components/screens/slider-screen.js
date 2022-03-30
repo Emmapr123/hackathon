@@ -12,28 +12,72 @@ import {
 } from "react-native";
 import { RadioButton } from "react-native-paper";
 import { EstimatedAmount } from "../atoms/estimated-amount";
-import { SpendingModal } from "../atoms/spending-modal";
 import { SliderTemplate } from "../templates/information-template";
 import LoadingScreen from "./loading-screen";
+import { getBudgetFormData } from "./../../functions/energy-api";
 
 const SliderScreen = () => {
-  const [checked, setChecked] = useState("first");
-  const [modalVisible, setModalVisible] = useState(false);
+  const [checked, setChecked] = useState("weekly");
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
+  const [estimatedMoney, setEstimatedMoney] = useState("-");
+  const [estimatedCarbon, setEstimatedCarbon] = useState("-");
 
-  const getModalVisible = (event) => {
-    setModalVisible(+event);
-  };
+  const [monthFormData, setMonthFormData] = useState(false);
+  const [weekFormData, setWeekFormData] = useState(false);
 
   const budgetSet = () => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-    }, 500);
-    navigation.navigate("Budget Tracker");
+      navigation.navigate("Budget Tracker");
+    }, 1000);
   };
 
+  useEffect(async () => {
+    const resMonth = await getBudgetFormData("sam.roth@ovoenergy.com", "month");
+    setMonthFormData(resMonth.data);
+    const resWeek = await getBudgetFormData("sam.roth@ovoenergy.com", "week");
+
+    console.log({ resWeek });
+    setWeekFormData(resWeek.data);
+  }, []);
+
+  if (!monthFormData && !weekFormData) return <LoadingScreen />;
+
+  const formPeriodData = checked == "weekly" ? weekFormData : monthFormData;
+  console.log({ formPeriodData });
+
+  const calcEstimatedAmount = (showerLength, thermoTemp, washingTemp) => {
+    console.log(formPeriodData.actions);
+    const {
+      showerLengthMinutes,
+      everythingElse,
+      standingCharge,
+      thermostatTemperatureC,
+      washingTemperatureC,
+    } = formPeriodData.actions;
+
+    let totalMoney = 0;
+    let totalCarbon = 0;
+
+    totalMoney += showerLengthMinutes.increment.moneyGBP * showerLength;
+    totalCarbon += showerLengthMinutes.increment.carbonCO2e * showerLength;
+
+    totalMoney += thermostatTemperatureC.increment.moneyGBP * thermoTemp;
+    totalCarbon += thermostatTemperatureC.increment.carbonCO2e * thermoTemp;
+
+    totalMoney += washingTemperatureC.increment.moneyGBP * washingTemp;
+    totalCarbon += washingTemperatureC.increment.carbonCO2e * washingTemp;
+
+    totalMoney += standingCharge.default.money;
+
+    totalMoney += everythingElse.default.moneyGBP;
+    totalCarbon += everythingElse.default.carbonCO2e;
+
+    setEstimatedMoney(totalMoney);
+    setEstimatedCarbon(totalCarbon);
+  };
   if (loading) return <LoadingScreen />;
   return (
     <ScrollView style={styles.container}>
@@ -52,7 +96,7 @@ const SliderScreen = () => {
         <View>
           <Text style={styles.questionsTitle}>Let’s start with your goals</Text>
           <Text style={styles.questions}>
-            When would you like to set your budget for?
+            What time period do you to set your budget for?
           </Text>
           <View>
             <View
@@ -63,14 +107,14 @@ const SliderScreen = () => {
               }}
             >
               <RadioButton
-                value="first"
-                status={checked === "first" ? "checked" : "unchecked"}
-                onPress={() => setChecked("first")}
+                value="weekly"
+                status={checked === "weekly" ? "checked" : "unchecked"}
+                onPress={() => setChecked("weekly")}
                 style={styles.radioButton}
                 color={"#0D8426"}
                 uncheckedColor={"gray"}
               />
-              <Text>This week</Text>
+              <Text>Weekly</Text>
             </View>
             <View
               style={{
@@ -81,13 +125,13 @@ const SliderScreen = () => {
               }}
             >
               <RadioButton
-                value="second"
-                status={checked === "second" ? "checked" : "unchecked"}
-                onPress={() => setChecked("second")}
+                value="monthly"
+                status={checked === "monthly" ? "checked" : "unchecked"}
+                onPress={() => setChecked("monthly")}
                 style={styles.radioButton}
                 color={"#0D8426"}
               />
-              <Text>This Month</Text>
+              <Text>Monthly</Text>
             </View>
           </View>
           <Text style={styles.questionsTitle}>Energy habits</Text>
@@ -95,24 +139,35 @@ const SliderScreen = () => {
             We’ll ask you a few questions on your energy habits to try an
             calculate a set budget for you.
           </Text>
-          <SliderTemplate />
+          <SliderTemplate
+            formPeriodData={formPeriodData}
+            calcEstimatedAmount={calcEstimatedAmount}
+          />
           <Text style={styles.questions}>
             Here’s what your budget looks like for the month based on the energy
             habit inputs
           </Text>
-          <EstimatedAmount amount={"£123"} />
+          <Text>{checked}</Text>
+          <EstimatedAmount
+            moneyAmount={estimatedMoney}
+            carbonAmount={estimatedCarbon}
+          />
           <TouchableOpacity style={styles.button} onPress={() => budgetSet()}>
-            <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
+            <Text>
+              {" "}
+              Default £ {formPeriodData && formPeriodData?.total.moneyGBP}
+            </Text>
+            <Text>
+              {" "}
+              Default val {formPeriodData && formPeriodData?.total.moneyGBP}
+            </Text>
+
+            <Text style={{ color: "white", fontSize: 28, fontWeight: "700" }}>
               Set budget
             </Text>
           </TouchableOpacity>
         </View>
       </View>
-      {modalVisible ? (
-        <BlurView intensity={100}>
-          <SpendingModal {...{ modalVisible, getModalVisible }} />
-        </BlurView>
-      ) : undefined}
     </ScrollView>
   );
 };
