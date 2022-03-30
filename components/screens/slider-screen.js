@@ -39,17 +39,14 @@ const SliderScreen = () => {
     setMonthFormData(resMonth.data);
     const resWeek = await getBudgetFormData("sam.roth@ovoenergy.com", "week");
 
-    console.log({ resWeek });
     setWeekFormData(resWeek.data);
   }, []);
 
   if (!monthFormData && !weekFormData) return <LoadingScreen />;
 
   const formPeriodData = checked == "weekly" ? weekFormData : monthFormData;
-  console.log({ formPeriodData });
 
   const calcEstimatedAmount = (showerLength, thermoTemp, washingTemp) => {
-    console.log(formPeriodData.actions);
     const {
       showerLengthMinutes,
       everythingElse,
@@ -67,8 +64,8 @@ const SliderScreen = () => {
     totalMoney += thermostatTemperatureC.increment.moneyGBP * thermoTemp;
     totalCarbon += thermostatTemperatureC.increment.carbonCO2e * thermoTemp;
 
-    totalMoney += washingTemperatureC.increment.moneyGBP * washingTemp;
-    totalCarbon += washingTemperatureC.increment.carbonCO2e * washingTemp;
+    totalMoney += washingTemperatureC.increment.moneyGBP * (washingTemp / 10) ;
+    totalCarbon += washingTemperatureC.increment.carbonCO2e * (washingTemp / 10);
 
     totalMoney += standingCharge.default.money;
 

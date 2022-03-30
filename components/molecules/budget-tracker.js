@@ -1,7 +1,7 @@
 import { SliderComponent } from "../atoms/slider";
 import { View, Text, StyleSheet } from "react-native";
 
-const BudgetTracker = ({ title, metric, value, getValue, minValue, maxValue }) => {
+const BudgetTracker = ({ title, metric, value, getValue, minValue, maxValue, step }) => {
   return (
     <View>
       {/* <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}> */}
@@ -10,7 +10,7 @@ const BudgetTracker = ({ title, metric, value, getValue, minValue, maxValue }) =
       <SliderComponent
         value={value}
         getValue={getValue}
-        {...{ minValue, maxValue }}
+        {...{ minValue, maxValue, step }}
       />
       <View style={{alignItems: 'flex-end'}}>
       <Text>{value} {metric}</Text></View>
