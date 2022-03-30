@@ -9,11 +9,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import GreenLightScreen from "./components/screens/greenlight-screen";
 import LoadingScreen from "./components/screens/loading-screen";
 import React, { useEffect } from "react";
+import { LoginScreen } from "./components/screens/login";
+import { useState } from "react";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  const [isLoading, setLoading] = React.useState(true);
+  const [isLoading, setLoading] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
@@ -22,6 +25,7 @@ export default function App() {
   }, []);
 
   if (isLoading) return <LoadingScreen />;
+  if (!loggedIn) return <LoginScreen {...{setLoggedIn}} />
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
@@ -30,7 +34,7 @@ export default function App() {
           <Tab.Navigator >
           <Tab.Screen
               name="Analytics"
-              component={GreenLightScreen}
+              component={InsightScreen}
               options={{
                 tabBarLabelPosition: 'below-icon',
                 activeTintColor: "#e91e63",
