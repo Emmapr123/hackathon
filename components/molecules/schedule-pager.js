@@ -20,7 +20,7 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
       <View style={styles.questionsBox}>
         <RemainingBudget
           progress={monthPercentageBudget}
-          spentAmount={month.actualSoFarInPeriod.moneyGBP}
+          spentAmount={month.actualSoFarInPeriod.moneyGBP.toFixed(0)}
           budgetAmount={month.budgetSoFarInPeriod.moneyGBP.toFixed(0)}
           periodLengthDays={month.periodLengthDays}
           periodElapsedDays={month.periodElapsedDays}
