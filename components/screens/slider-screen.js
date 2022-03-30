@@ -98,7 +98,7 @@ const SliderScreen = ({setInsightData, email}) => {
         style={{ position: "absolute" }}
       />
       <View>
-        <Text style={styles.title}>Budget Tracker</Text>
+        <Text style={styles.title}>Budget Buddy</Text>
         <Text style={styles.subTitle}>
           A handy tool to help manage your energy usage and take small actions
           to keep on top of your budget
