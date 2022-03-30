@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/core";
 import { BlurView } from "expo-blur";
+import { useEffect } from "react";
 import { useState } from "react";
 import {
   ScrollView,
@@ -13,15 +14,27 @@ import { RadioButton } from "react-native-paper";
 import { EstimatedAmount } from "../atoms/estimated-amount";
 import { SpendingModal } from "../atoms/spending-modal";
 import { SliderTemplate } from "../templates/information-template";
+import LoadingScreen from "./loading-screen";
 
 const SliderScreen = () => {
   const [checked, setChecked] = useState("first");
   const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navigation = useNavigation();
 
   const getModalVisible = (event) => {
     setModalVisible(+event);
   };
 
+  const budgetSet = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+    navigation.navigate("Budget Tracker");
+  };
+
+  if (loading) return <LoadingScreen />;
   return (
     <ScrollView style={styles.container}>
       <Image
@@ -88,10 +101,7 @@ const SliderScreen = () => {
             habit inputs
           </Text>
           <EstimatedAmount amount={"£123"} />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => setModalVisible(true)}
-          >
+          <TouchableOpacity style={styles.button} onPress={() => budgetSet()}>
             <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
               Set budget
             </Text>

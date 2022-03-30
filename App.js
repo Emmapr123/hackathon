@@ -6,17 +6,17 @@ import { SliderScreen } from "./components/screens/slider-screen";
 import InsightScreen from "./components/screens/insight-screen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import GreenLightScreen from "./components/screens/greenlight-screen";
 import LoadingScreen from "./components/screens/loading-screen";
 import React, { useEffect } from "react";
 import { LoginScreen } from "./components/screens/login";
 import { useState } from "react";
+import GreenLightScreen from "./components/screens/greenlight-screen";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   const [isLoading, setLoading] = useState(true);
-  const [loggedIn, setLoggedIn] = useState(false)
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,18 +25,18 @@ export default function App() {
   }, []);
 
   if (isLoading) return <LoadingScreen />;
-  if (!loggedIn) return <LoginScreen {...{setLoggedIn}} />
+  if (!loggedIn) return <LoginScreen {...{ setLoggedIn }} />;
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
         <NavigationContainer>
-          <Tab.Navigator >
-          <Tab.Screen
+          <Tab.Navigator>
+            <Tab.Screen
               name="Analytics"
-              component={InsightScreen}
+              component={GreenLightScreen}
               options={{
-                tabBarLabelPosition: 'below-icon',
+                tabBarLabelPosition: "below-icon",
                 activeTintColor: "#e91e63",
                 tabBarLabel: "Insights",
                 tabBarIcon: () => {
@@ -84,7 +84,6 @@ export default function App() {
                 },
               }}
             />
-           
           </Tab.Navigator>
         </NavigationContainer>
       </ApplicationProvider>

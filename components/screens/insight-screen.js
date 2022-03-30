@@ -10,9 +10,11 @@ import TabBarSimple from "./../molecules/top-nav";
 import React from "react";
 import ViewPagerSimple from "./../molecules/schedule-pager.js";
 import RemainingBudget from "../molecules/progress-graph";
+import { useNavigation } from "@react-navigation/core";
 
 const InsightScreen = () => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const navigation = useNavigation();
 
   return (
     <ScrollView>
@@ -48,7 +50,7 @@ const InsightScreen = () => {
         </Text>
         <TouchableOpacity
           style={styles.button}
-          // onPress={() => setModalVisible(true)}
+          onPress={() => navigation.navigate("Analytics")}
         >
           <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
             View other energy insights
@@ -62,7 +64,7 @@ const InsightScreen = () => {
         </Text>
         <TouchableOpacity
           style={styles.button}
-          // onPress={() => setModalVisible(true)}
+          // onPress={() => navigation.navigate("Analytics")}
         >
           <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
             Get in touch

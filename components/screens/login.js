@@ -7,7 +7,10 @@ import {
   View,
 } from "react-native";
 
-const LoginScreen = ({setLoggedIn}) => {
+const LoginScreen = ({ setLoggedIn }) => {
+  const login = () => {
+    setLoggedIn(true);
+  };
   return (
     <View style={styles.container}>
       <Image
@@ -32,10 +35,7 @@ const LoginScreen = ({setLoggedIn}) => {
           onChangeText={(event) => console.log(event)}
           value={0}
         />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => setLoggedIn(true)}
-        >
+        <TouchableOpacity style={styles.button} onPress={() => login()}>
           <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
             Login
           </Text>
