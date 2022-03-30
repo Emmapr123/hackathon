@@ -27,11 +27,13 @@ export const postInsightData = (
   emailAddress = "laura.marshall@hotmail.com",
   showerLengthMinutes,
   thermostatTemperatureC,
-  washingTemperatureC
+  washingTemperatureC,
+  total,
+  interval = 'month'
 ) => {
   const options = {
     method: "POST",
-    url: `https://dev-hackathon-3oqmw6qtxq-nw.a.run.app/set?emailAddress=${emailAddress}&showerLengthMinutes=${showerLengthMinutes}&thermostatTemperatureC=${thermostatTemperatureC}&washingTemperatureC=${washingTemperatureC}`,
+    url: `https://dev-hackathon-3oqmw6qtxq-nw.a.run.app/set?emailAddress=${emailAddress}&showerLengthMinutes=${showerLengthMinutes}&thermostatTemperatureC=${thermostatTemperatureC}&washingTemperatureC=${washingTemperatureC}&total=${total}&interval=${interval}`,
     params: {},
     headers: {},
   };

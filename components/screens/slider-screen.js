@@ -17,7 +17,7 @@ import LoadingScreen from "./loading-screen";
 import { getBudgetFormData, postInsightData, getTrackData } from "./../../functions/energy-api";
 
 const SliderScreen = ({setInsightData, email}) => {
-  const [checked, setChecked] = useState("weekly");
+  const [checked, setChecked] = useState("monthly");
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
   const [estimatedMoney, setEstimatedMoney] = useState("-");
@@ -31,7 +31,7 @@ const SliderScreen = ({setInsightData, email}) => {
   const budgetSet = async () => {
     setLoading(true);
     setTimeout(async() => {
-      const trackRes = await postInsightData(email, formData.showerLength, formData.thermoTemp, formData.washingTemp);
+      const trackRes = await postInsightData(email, formData.showerLength, formData.thermoTemp, formData.washingTemp, estimatedMoney, checked == "weekly" ? 'week' : 'month');
 
       const trackWeekRes = await getTrackData(email, "week");
       const trackMonthRes = await getTrackData(email, "month");

@@ -6,6 +6,7 @@ const UsageTimeContainer = ({ time, percentage, budgetAmount, actualAmount }) =>
     <View style={styles.container}>
       <View style={{ width: 60 }}>
         <Text style={styles.text}>{time}</Text>
+        <Text stlye={styles.text}> £{budgetAmount - actualAmount} </Text>
       </View>
       <UsageBar {...{ percentage }} />
       <View style={{ width: 60 }}>
