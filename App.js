@@ -18,11 +18,18 @@ export default function App() {
   const [isLoading, setLoading] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const [insightData, setInsightData] = useState();
+
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
   }, []);
+
+  const SliderWithInsightData = () => {
+    return <SliderScreen insightData={insightData} setInsightData={setInsightData}/>
+  }
 
   if (isLoading) return <LoadingScreen />;
   if (!loggedIn) return <LoginScreen {...{ setLoggedIn }} />;
@@ -34,7 +41,7 @@ export default function App() {
           <Tab.Navigator>
             <Tab.Screen
               name="Settings"
-              component={SliderScreen}
+              component={SliderWithInsightData}
               options={{
                 activeTintColor: "#e91e63",
                 tabBarLabel: "Budget",
