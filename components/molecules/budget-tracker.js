@@ -13,7 +13,7 @@ const BudgetTracker = ({ title, metric, value, getValue, minValue, maxValue }) =
         {...{ minValue, maxValue }}
       />
       <View style={{alignItems: 'flex-end'}}>
-      <Text>{value} {metric}</Text></View>
+      <Text style={{marginBottom: 20}}>{value} {metric}</Text></View>
     </View>
   );
 };

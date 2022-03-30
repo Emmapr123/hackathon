@@ -37,7 +37,7 @@ export default function App() {
               component={SliderScreen}
               options={{
                 activeTintColor: "#e91e63",
-                tabBarLabel: "Budget",
+                tabBarLabel: "Set Budget",
                 tabBarIcon: () => {
                   return (
                     <Image
@@ -54,7 +54,7 @@ export default function App() {
               component={InsightScreen}
               options={{
                 activeTintColor: "#e91e63",
-                tabBarLabel: "Home",
+                tabBarLabel: "Track Budget",
                 tabBarIcon: () => {
                   return (
                     <Image

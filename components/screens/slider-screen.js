@@ -75,8 +75,11 @@ const SliderScreen = () => {
     totalMoney += everythingElse.default.moneyGBP;
     totalCarbon += everythingElse.default.carbonCO2e;
 
-    setEstimatedMoney(totalMoney);
-    setEstimatedCarbon(totalCarbon);
+    Math.ceil(totalMoney);
+    Math.ceil(totalCarbon);
+
+    setEstimatedMoney(Math.ceil(totalMoney));
+    setEstimatedCarbon(Math.ceil(totalCarbon));
   };
   if (loading) return <LoadingScreen />;
   return (
@@ -153,15 +156,12 @@ const SliderScreen = () => {
             carbonAmount={estimatedCarbon}
           />
           <TouchableOpacity style={styles.button} onPress={() => budgetSet()}>
-            <Text>
-              {" "}
+            {/* <Text>
               Default £ {formPeriodData && formPeriodData?.total.moneyGBP}
             </Text>
             <Text>
-              {" "}
               Default val {formPeriodData && formPeriodData?.total.moneyGBP}
-            </Text>
-
+            </Text> */}
             <Text style={{ color: "white", fontSize: 28, fontWeight: "700" }}>
               Set budget
             </Text>

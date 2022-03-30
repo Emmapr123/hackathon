@@ -32,17 +32,6 @@ const InsightScreen = () => {
         <RemainingBudget progress={0.4} />
       </View>
       <View style={styles.box}>
-        <Text style={styles.header}>Estimated total spend</Text>
-        <TabBarSimple
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
-        <ViewPagerSimple
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
-      </View>
-      <View style={styles.box}>
         <Text style={styles.header}>Dig into your insight</Text>
         <Text style={styles.body}>
           It looks like you’ve used more heating this month compared to last
@@ -56,6 +45,17 @@ const InsightScreen = () => {
             View other energy insights
           </Text>
         </TouchableOpacity>
+      </View>
+      <View style={styles.box}>
+        <Text style={styles.header}>Estimated total spend</Text>
+        <TabBarSimple
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
+        <ViewPagerSimple
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
       </View>
       <View style={styles.box}>
         <Text style={styles.header}>We're here to help</Text>
