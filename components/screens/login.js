@@ -33,7 +33,7 @@ const LoginScreen = ({ setLoggedIn, setLoginDetails }) => {
         <Text style={styles.title}>Email or My OVO ID</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(event) => setEmail(event)}
+          onChangeText={(event) => setEmail(event.toLowerCase())}
           value={email}
         />
         <Text style={styles.title}>Password</Text>
