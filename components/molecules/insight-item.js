@@ -6,7 +6,7 @@ import LottieView from "lottie-react-native";
 
 const windowWidth = Dimensions.get("window").width;
 const StarIcon = (props) => <Icon {...props} name="star" />;
-const InsightItem = ({ data }) => {
+const InsightItem = ({ data, insights }) => {
     const [visible, setVisible] = React.useState(false);
 
   return (
@@ -18,7 +18,7 @@ const InsightItem = ({ data }) => {
       <View>
       <HorizontalBarGraph
         style={styles.chart}
-        data={[55, 100]}
+        data={[insights.actual, insights.target]}
         labels={["Actual", "Target"]}
         width={windowWidth - 80}
         height={100}
@@ -87,7 +87,7 @@ const InsightItem = ({ data }) => {
 const styles = StyleSheet.create({
   item: {
     marginVertical: 4,
-    height: 350,
+    height: 300,
     backgroundColor: 'white',
     // width: '100%',
     paddingHorizontal: 15,

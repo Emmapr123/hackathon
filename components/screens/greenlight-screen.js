@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, View } from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import { Text } from "@ui-kitten/components";
 import React from "react";
 import InsightItemList from "./../molecules/insight-card";
@@ -13,6 +13,11 @@ const GreenLightScreen = ({ insightData }) => {
       "Start saving money and energy while taking a shower: install a water-efficient showerhead or a shower flow reducer. The best bit? These are usually free – check with your water company.",
   };
 
+  const showerData = {
+    actual: 22,
+    target: 20,
+  };
+
   const heating = {
     title: "Heating your home",
     subTitle:
@@ -21,10 +26,29 @@ const GreenLightScreen = ({ insightData }) => {
     tipBody: "",
   };
 
+  const heatingData = {
+    actual: 100,
+    target: 44,
+  };
+  const Washing = {
+    title: "Washing machine",
+    subTitle: "This is the electricity used to power your washign machine.",
+  };
+
+  const washingData = {
+    actual: 12,
+    target: 50,
+  };
+
   return (
     <ScrollView>
-      <InsightItem data={shower} />
-      <InsightItem data={heating} />
+      <Image
+        source={require("../../assets/Header.png")}
+        style={{ position: "absolute" }}
+      />
+      <InsightItem data={shower} insights={showerData} />
+      <InsightItem data={heating} insights={heatingData} />
+      <InsightItem data={Washing} insights={washingData} />
     </ScrollView>
   );
 };
