@@ -2,7 +2,7 @@ import React from "react";
 import { Slider } from "@miblanchard/react-native-slider";
 import { StyleSheet, View } from "react-native";
 
-const SliderComponent = ({value, getValue, minValue, maxValue}) => {
+const SliderComponent = ({value, getValue, minValue, maxValue, step}) => {
 
   return (
     <View style={styles.container}>
@@ -10,7 +10,7 @@ const SliderComponent = ({value, getValue, minValue, maxValue}) => {
         value={value}
         maximumValue={maxValue}
         minimumValue={minValue}
-        step={1}
+        step={step}
         trackStyle={styles.slider}
         trackClickable={true}
         thumbStyle={styles.thumb}

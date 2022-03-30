@@ -12,20 +12,20 @@ const SliderTemplate = ({formPeriodData, calcEstimatedAmount}) => {
   const [wash, setWash] = useState(washingTemperatureC.default);
 
   const getShowers = (event) => {
-    const newShowerVal = (event[0] + showerLengthMinutes.slideStepSize) - 1;
+    const newShowerVal = (event[0]);
     setShowers(newShowerVal);
     calcEstimatedAmount(newShowerVal, temp, wash);
   };
 
   const getTemp = (event) => {
-    const newTempVal = (event[0] + thermostatTemperatureC.slideStepSize) - 1;
+    const newTempVal = (event[0]);
     setTemp(newTempVal);
     calcEstimatedAmount(showers, newTempVal, wash);
 
   };
 
   const getWash = (event) => {
-    const newWashVal = (event[0] + washingTemperatureC.slideStepSize) - 1;
+    const newWashVal = (event[0]);
     setWash(newWashVal);
     calcEstimatedAmount(showers, temp, newWashVal);
 
@@ -46,6 +46,7 @@ const SliderTemplate = ({formPeriodData, calcEstimatedAmount}) => {
         getValue={getShowers}
         minValue={showerLengthMinutes.min}
         maxValue={showerLengthMinutes.max}
+        step={showerLengthMinutes.slideStepSize}
       />
       <BudgetTracker
         title={"What’s the average temperature you set the thermostat to?"}
@@ -54,6 +55,7 @@ const SliderTemplate = ({formPeriodData, calcEstimatedAmount}) => {
         getValue={getTemp}
         minValue={thermostatTemperatureC.min}
         maxValue={thermostatTemperatureC.max}
+        step={thermostatTemperatureC.slideStepSize}
       />
       <BudgetTracker
         title={"What’s the average temparature you set your washing machine to?"}
@@ -62,6 +64,7 @@ const SliderTemplate = ({formPeriodData, calcEstimatedAmount}) => {
         getValue={getWash}
         minValue={washingTemperatureC.min}
         maxValue={washingTemperatureC.max}
+        step={washingTemperatureC.slideStepSize}
       />
     </View>
   );
