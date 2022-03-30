@@ -27,7 +27,7 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
               percentage = 100;
             }
             console.log({percentage});
-            return <UsageTimeContainer key={item.month} time={item.month} percentage={percentage} budgetAmount={item.budgetGBP.toFixed(2)} actualAmount={item.actualGBP.toFixed(2)} />
+            return <UsageTimeContainer key={item.month} time={item.month.substring(0,3).toUpperCase()} percentage={percentage} budgetAmount={item.budgetGBP.toFixed(2)} actualAmount={item.actualGBP.toFixed(2)} />
           })}
         </ScrollView>
       </Layout>
