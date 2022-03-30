@@ -31,10 +31,10 @@ const SliderScreen = ({setInsightData}) => {
   const budgetSet = async () => {
     setLoading(true);
     setTimeout(async() => {
-      const trackRes = await postInsightData("sam.roth@ovoenergy.com", formData.showerLength, formData.thermoTemp, formData.washingTemp);
+      const trackRes = await postInsightData("laura.marshall@hotmail.com", formData.showerLength, formData.thermoTemp, formData.washingTemp);
 
-      const trackWeekRes = await getTrackData("sam.roth@ovoenergy.com", "week");
-      const trackMonthRes = await getTrackData("sam.roth@ovoenergy.com", "month");
+      const trackWeekRes = await getTrackData("laura.marshall@hotmail.com", "week");
+      const trackMonthRes = await getTrackData("laura.marshall@hotmail.com", "month");
 
       setInsightData({
         week: trackWeekRes.data,
@@ -47,9 +47,9 @@ const SliderScreen = ({setInsightData}) => {
   };
 
   useEffect(async () => {
-    const resMonth = await getBudgetFormData("sam.roth@ovoenergy.com", "month");
+    const resMonth = await getBudgetFormData("laura.marshall@hotmail.com", "month");
     setMonthFormData(resMonth.data);
-    const resWeek = await getBudgetFormData("sam.roth@ovoenergy.com", "week");
+    const resWeek = await getBudgetFormData("laura.marshall@hotmail.com", "week");
 
     setWeekFormData(resWeek.data);
   }, []);

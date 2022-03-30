@@ -3,7 +3,7 @@ import { ProgressCircle } from "react-native-svg-charts";
 import { Text, Layout, Card } from "@ui-kitten/components";
 import { StyleSheet, View } from "react-native";
 
-const RemainingBudget = ({ progress, spentAmount, budgetAmount, remainingDays }) => {
+const RemainingBudget = ({ progress, spentAmount, budgetAmount, periodElapsedDays, periodLengthDays }) => {
   return (
     <View>
       <View style={{ position: "relative" }}>
@@ -20,7 +20,7 @@ const RemainingBudget = ({ progress, spentAmount, budgetAmount, remainingDays })
             £{spentAmount} of £{budgetAmount}
           </Text>
           <Text style={{ fontSize: 14, fontWeight: "400" }}>
-            left of for {remainingDays} days
+            {periodElapsedDays}  of {periodLengthDays} days
           </Text>
         </View>
         <View>

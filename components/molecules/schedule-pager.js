@@ -5,6 +5,8 @@ import { UsageTimeContainer } from "../organisms/usage-time-container";
 import RemainingBudget from "../molecules/progress-graph";
 
 const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
+  if(!insightData) return <Text> No insight data</Text>
+
   const {week, month } = insightData;
 
   const weekPercentageBudget =  week?.budgetSoFarInPeriod.moneyGBP / week?.actualSoFarInPeriod.moneyGBP;
