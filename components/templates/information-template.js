@@ -1,23 +1,41 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { BudgetTracker } from "../molecules/budget-tracker";
 
-const SliderTemplate = () => {
-  const [showers, setShowers] = useState(10);
-  const [temp, setTemp] = useState(19);
-  const [wash, setWash] = useState(40);
+const SliderTemplate = ({formPeriodData, calcEstimatedAmount}) => {
+  if(!formPeriodData) return <></>;
+  
+  const {showerLengthMinutes, everythingElseGBP, standingChargeGBP, thermostatTemperatureC, washingTemperatureC, total} = formPeriodData.actions;
+
+  const [showers, setShowers] = useState(showerLengthMinutes.default);
+  const [temp, setTemp] = useState(thermostatTemperatureC.default);
+  const [wash, setWash] = useState(washingTemperatureC.default);
 
   const getShowers = (event) => {
-    setShowers(+event);
+    const newShowerVal = (event[0] + showerLengthMinutes.slideStepSize) - 1;
+    setShowers(newShowerVal);
+    calcEstimatedAmount(newShowerVal, temp, wash);
   };
 
   const getTemp = (event) => {
-    setTemp(+event);
+    const newTempVal = (event[0] + thermostatTemperatureC.slideStepSize) - 1;
+    setTemp(newTempVal);
+    calcEstimatedAmount(showers, newTempVal, wash);
+
   };
 
   const getWash = (event) => {
-    setWash(+event);
+    const newWashVal = (event[0] + washingTemperatureC.slideStepSize) - 1;
+    setWash(newWashVal);
+    calcEstimatedAmount(showers, temp, newWashVal);
+
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      calcEstimatedAmount(showers, temp, wash);
+    }, 500);
+  }, []);
 
   return (
     <View style={styles.contianer}>
@@ -26,24 +44,24 @@ const SliderTemplate = () => {
         metric={'min'}
         value={showers}
         getValue={getShowers}
-        minValue={0}
-        maxValue={60}
+        minValue={showerLengthMinutes.min}
+        maxValue={showerLengthMinutes.max}
       />
       <BudgetTracker
-        title={"What’s the average temperature you set the thermometer to?"}
+        title={"What’s the average temperature you set the thermostat to?"}
         value={temp}
         metric={'C'}
         getValue={getTemp}
-        minValue={0}
-        maxValue={25}
+        minValue={thermostatTemperatureC.min}
+        maxValue={thermostatTemperatureC.max}
       />
       <BudgetTracker
         title={"What’s the average temparature you set your washing machine to?"}
         value={wash}
         metric={'C'}
         getValue={getWash}
-        minValue={0}
-        maxValue={90}
+        minValue={washingTemperatureC.min}
+        maxValue={washingTemperatureC.max}
       />
     </View>
   );
