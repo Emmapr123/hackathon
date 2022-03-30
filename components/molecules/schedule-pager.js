@@ -5,37 +5,51 @@ import { UsageTimeContainer } from "../organisms/usage-time-container";
 import RemainingBudget from "../molecules/progress-graph";
 
 const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
-  if(!insightData) return <Text> No insight data</Text>
+  if (!insightData) return <Text> No insight data</Text>;
 
   const { month } = insightData;
 
-  const monthPercentageBudget =  month?.budgetSoFarInPeriod.moneyGBP / month?.actualSoFarInPeriod.moneyGBP;
+  const monthPercentageBudget =
+    month?.budgetSoFarInPeriod.moneyGBP / month?.actualSoFarInPeriod.moneyGBP;
 
-  const {budgetAndActualHistory} = month;
+  const { budgetAndActualHistory } = month;
 
   console.log(budgetAndActualHistory);
   return (
     <Layout style={styles.tab} level="2">
       <View style={styles.questionsBox}>
-      <RemainingBudget progress={monthPercentageBudget} spentAmount={month.actualSoFarInPeriod.moneyGBP} budgetAmount={month.budgetSoFarInPeriod.moneyGBP.toFixed(2)} periodLengthDays={month.periodLengthDays} periodElapsedDays={month.periodElapsedDays}/>
+        <RemainingBudget
+          progress={monthPercentageBudget}
+          spentAmount={month.actualSoFarInPeriod.moneyGBP}
+          budgetAmount={month.budgetSoFarInPeriod.moneyGBP.toFixed(0)}
+          periodLengthDays={month.periodLengthDays}
+          periodElapsedDays={month.periodElapsedDays}
+        />
       </View>
-        <Text style={styles.text}>Spend in £</Text>
-        <ScrollView directionalLockEnabled={true} style={{height: 250}}>
-          {budgetAndActualHistory.map((item, i) => {
-            let percentage = (item.actualGBP / item.budgetGBP ) * 100;
-            if(percentage > 100){
-              percentage = 100;
-            }
-            console.log({percentage});
-            return <UsageTimeContainer key={item.month} time={item.month.substring(0,3).toUpperCase()} percentage={percentage} budgetAmount={item.budgetGBP.toFixed(2)} actualAmount={item.actualGBP.toFixed(2)} />
-          })}
-        </ScrollView>
-      </Layout>
+      <Text style={styles.text}>Spend in £</Text>
+      <ScrollView directionalLockEnabled={true} style={{ height: 250 }}>
+        {budgetAndActualHistory.map((item, i) => {
+          let percentage = (item.actualGBP / item.budgetGBP) * 100;
+          if (percentage > 100) {
+            percentage = 100;
+          }
+          console.log({ percentage });
+          return (
+            <UsageTimeContainer
+              key={item.month}
+              time={item.month.substring(0, 3).toUpperCase()}
+              percentage={percentage}
+              budgetAmount={item.budgetGBP.toFixed(0)}
+              actualAmount={item.actualGBP.toFixed(0)}
+            />
+          );
+        })}
+      </ScrollView>
+    </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-
   questionsBox: {
     // borderWidth: 1,
     // borderColor: 'black',
@@ -59,7 +73,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    marginTop: 10
+    marginTop: 10,
   },
 });
 
