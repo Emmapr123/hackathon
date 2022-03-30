@@ -10,7 +10,7 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
   const { month } = insightData;
 
   const monthPercentageBudget =
-    month?.budgetSoFarInPeriod.moneyGBP / month?.actualSoFarInPeriod.moneyGBP;
+    month?.actualSoFarInPeriod.moneyGBP / month?.budgetSoFarInPeriod.moneyGBP;
 
   const { budgetAndActualHistory } = month;
 
@@ -19,7 +19,7 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
       <View style={styles.questionsBox}>
         <RemainingBudget
           progress={monthPercentageBudget}
-          spentAmount={month.actualSoFarInPeriod.moneyGBP}
+          spentAmount={month.actualSoFarInPeriod.moneyGBP.toFixed(0)}
           budgetAmount={month.budgetSoFarInPeriod.moneyGBP.toFixed(0)}
           periodLengthDays={month.periodLengthDays}
           periodElapsedDays={month.periodElapsedDays}

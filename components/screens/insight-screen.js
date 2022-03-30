@@ -62,7 +62,7 @@ const InsightScreen = ({ insightData }) => {
         </TouchableOpacity>
       </View>
       <View style={styles.monthBox}>
-        <Text style={styles.text}>Spend in £</Text>
+        <Text style={styles.text}>Under/Over budget</Text>
         <ScrollView directionalLockEnabled={true} style={{ height: 250 }}>
           {budgetAndActualHistory.map((item, i) => {
             let percentage = (item.actualGBP / item.budgetGBP) * 100;

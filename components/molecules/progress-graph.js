@@ -7,7 +7,7 @@ const RemainingBudget = ({ progress, spentAmount, budgetAmount, periodElapsedDay
   return (
     <View>
       <View style={{ position: "relative" }}>
-        <View style={{ position: "absolute", left: "40%", bottom: 0 }}>
+        <View style={{ position: "absolute", left: "27%", bottom: 60 }}>
           <Text
             style={{
               fontWeight: "700",

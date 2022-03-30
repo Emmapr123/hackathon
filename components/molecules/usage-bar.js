@@ -10,6 +10,7 @@ const UsageBar = ({ percentage }) => {
         color={"lightgray"}
         style={styles.views}
         axis={"width"}
+        thickness={10}
       />
       <AnimatedBar
         animated={false}
