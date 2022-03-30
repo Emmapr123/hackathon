@@ -15,6 +15,7 @@ const SpendingModal = ({ modalVisible, getModalVisible }) => {
     getModalVisible(false);
     navigation.navigate("Budget Tracker");
   };
+  
   return (
     <View style={styles.centeredView}>
       <Modal
@@ -60,10 +61,9 @@ const SpendingModal = ({ modalVisible, getModalVisible }) => {
 };
 const styles = StyleSheet.create({
   centeredView: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22,
+    flex: 1,
   },
   modalView: {
     backgroundColor: "gray",

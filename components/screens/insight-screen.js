@@ -22,7 +22,7 @@ const InsightScreen = () => {
       </View>
       <View style={styles.questionsBox}>
         <Text>This months budget</Text>
-        <RemainingBudget />
+        <RemainingBudget progress={0.7} />
       </View>
       <TabBarSimple
         selectedIndex={selectedIndex}
@@ -32,6 +32,14 @@ const InsightScreen = () => {
         selectedIndex={selectedIndex}
         setSelectedIndex={setSelectedIndex}
       />
+      <View style={styles.box}>
+        <Text style={styles.header}>Dig into your insight</Text>
+        <Text style={styles.body}>
+          {" "}
+          It looks like you’ve used more heating this month compared to last
+          month.{" "}
+        </Text>
+      </View>
     </ScrollView>
   );
 };
@@ -70,6 +78,32 @@ const styles = StyleSheet.create({
   layout: {
     justifyContent: "center",
     alignItems: "center",
+  },
+  box: {
+    padding: 20,
+    marginHorizontal: 10,
+    backgroundColor: "white",
+    borderRadius: 10,
+    shadowColor: "gray",
+    shadowRadius: 10,
+    shadowOpacity: 10,
+    shadowOffset: {
+      width: 5,
+      height: 5,
+    },
+  },
+  header: {
+    fontSize: 18,
+    marginTop: 12,
+    paddingHorizontal: 16,
+    fontWeight: "700",
+  },
+  body: {
+    fontSize: 18,
+    marginTop: 12,
+    paddingHorizontal: 16,
+    fontWeight: "400",
+    paddingBottom: 40,
   },
 });
 

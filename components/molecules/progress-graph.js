@@ -3,7 +3,7 @@ import { ProgressCircle } from "react-native-svg-charts";
 import { Text, Layout, Card } from "@ui-kitten/components";
 import { StyleSheet, View } from "react-native";
 
-const RemainingBudget = () => {
+const RemainingBudget = ({progress}) => {
   return (
     <View>
       <View style={{ position: "relative" }}>
@@ -14,19 +14,19 @@ const RemainingBudget = () => {
         <View>
           <ProgressCircle
             style={{ height: 200 }}
-            progress={0.7}
-            progressColor={"#0D8426"}
+            progress={progress}
+            progressColor={progress < 0.7 ? "#0D8426" : 'orange' }
             startAngle={-Math.PI * 0.8}
             endAngle={Math.PI * 0.8}
           />
         </View>
       </View>
-      <Card style={styles.card} status="success">
+      {progress < 0.7 ? <Card style={styles.card} status="success">
         <Text>Looks like you're in budget, good job!</Text>
-      </Card>
+      </Card> :
       <Card style={styles.card} status="warning">
         <Text>You might be out of budget soon</Text>
-      </Card>
+      </Card> }
     </View>
   );
 };

@@ -57,7 +57,7 @@ function styles(color, thickness) {
   return StyleSheet.create({
     bar: {
       borderWidth: thickness,
-      borderRadius: thickness,
+      borderRadius: 0,
       position: "absolute",
       borderColor: color,
     },
