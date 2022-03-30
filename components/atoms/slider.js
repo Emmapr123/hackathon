@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   slider: {
-    backgroundColor: "gray",
+    backgroundColor: "lightgray",
   },
   thumb: {
     backgroundColor: "#006945",

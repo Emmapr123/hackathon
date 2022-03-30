@@ -3,10 +3,11 @@ import { Text } from "@ui-kitten/components";
 import React from "react";
 import InsightItemList from "./../molecules/insight-card";
 
-const GreenLightScreen = () => {  return (
-        <View>
-          <InsightItemList />
-        </View>
+const GreenLightScreen = () => {
+  return (
+    <View>
+      <InsightItemList />
+    </View>
   );
 };
 
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
   layout: {
     justifyContent: "center",
     alignItems: "center",
-  }
+  },
 });
 
 export default GreenLightScreen;

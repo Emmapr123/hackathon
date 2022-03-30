@@ -4,7 +4,7 @@ const EstimatedAmount = ({ moneyAmount, carbonAmount }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.amount}>£{moneyAmount}</Text>
-      <Text style={styles.amount}>CO2 {carbonAmount}</Text>
+      <Text style={styles.amount}>CO2 {carbonAmount} kg</Text>
     </View>
   );
 };
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     // justifyContent: "center",
     // alignItems: "center",
     display: "flex",
+    marginBottom: 10
   },
   amount: {
     fontSize: 18,
