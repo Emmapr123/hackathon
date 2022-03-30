@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -8,9 +9,12 @@ import {
 } from "react-native";
 
 const LoginScreen = ({ setLoggedIn }) => {
+  const [email, setEmail] = useState("");
+
   const login = () => {
     setLoggedIn(true);
   };
+
   return (
     <View style={styles.container}>
       <Image
@@ -25,15 +29,15 @@ const LoginScreen = ({ setLoggedIn }) => {
         <Text style={styles.title}>Email or My OVO ID</Text>
         <TextInput
           style={styles.input}
-          onChangeText={(event) => console.log(event)}
-          value={0}
+          onChangeText={(event) => setEmail(event)}
+          value={email}
         />
         <Text style={styles.title}>Password</Text>
 
         <TextInput
           style={styles.input}
           onChangeText={(event) => console.log(event)}
-          value={0}
+          value={""}
         />
         <TouchableOpacity style={styles.button} onPress={() => login()}>
           <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
