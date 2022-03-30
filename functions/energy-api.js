@@ -26,7 +26,7 @@ export const postInsightData = (emailAddress = 'sam.roth@ovoenergy.com', showerL
 export const getTrackData = (emailAddress = 'sam.roth@ovoenergy.com', interval = 'week') => {
     const options = {
         method: "GET",
-        url: `https://dev-hackathon-3oqmw6qtxq-nw.a.run.app/track?emailAddress=${emailAddress}&interval=${emailAddress}`,
+        url: `https://dev-hackathon-3oqmw6qtxq-nw.a.run.app/track?emailAddress=${emailAddress}&interval=${interval}`,
         params: {},
         headers: {},
       };

@@ -9,13 +9,13 @@ import { Text } from "@ui-kitten/components";
 import TabBarSimple from "./../molecules/top-nav";
 import React from "react";
 import ViewPagerSimple from "./../molecules/schedule-pager.js";
-import RemainingBudget from "../molecules/progress-graph";
 import { useNavigation } from "@react-navigation/core";
 
-const InsightScreen = () => {
+const InsightScreen = ({insightData}) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const navigation = useNavigation();
 
+  if(!insightData) return <Text> Please set a Budget</Text>
   return (
     <ScrollView>
       <Image
@@ -28,8 +28,18 @@ const InsightScreen = () => {
           You can see how much you’ve spent for the month and
         </Text>
       </View>
-      <View style={styles.questionsBox}>
-        <RemainingBudget progress={0.4} />
+
+      <View style={styles.box}>
+        <Text style={styles.header}>Estimated total spend</Text>
+        <TabBarSimple
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
+        <ViewPagerSimple
+        insightData={insightData}
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
       </View>
       <View style={styles.box}>
         <Text style={styles.header}>Dig into your insight</Text>
@@ -45,17 +55,6 @@ const InsightScreen = () => {
             View other energy insights
           </Text>
         </TouchableOpacity>
-      </View>
-      <View style={styles.box}>
-        <Text style={styles.header}>Estimated total spend</Text>
-        <TabBarSimple
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
-        <ViewPagerSimple
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
       </View>
       <View style={styles.box}>
         <Text style={styles.header}>We're here to help</Text>
@@ -90,21 +89,6 @@ const styles = StyleSheet.create({
     color: "white",
     fontWeight: "400",
     paddingBottom: 40,
-  },
-  questionsBox: {
-    // borderWidth: 1,
-    // borderColor: 'black',
-    padding: 20,
-    marginHorizontal: 10,
-    backgroundColor: "white",
-    borderRadius: 5,
-    shadowColor: "gray",
-    shadowRadius: 10,
-    shadowOpacity: 10,
-    shadowOffset: {
-      width: 5,
-      height: 5,
-    },
   },
   layout: {
     justifyContent: "center",
