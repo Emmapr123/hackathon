@@ -1,5 +1,6 @@
 import {
   Image,
+  Linking,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
@@ -25,7 +26,7 @@ const InsightScreen = ({insightData}) => {
       <View>
         <Text style={styles.title}>Track you budget</Text>
         <Text style={styles.subTitle}>
-          You can see how much you’ve spent for the month and
+          Check your energy budget and see a breakdown on
         </Text>
       </View>
 
@@ -57,16 +58,28 @@ const InsightScreen = ({insightData}) => {
         </TouchableOpacity>
       </View>
       <View style={styles.box}>
-        <Text style={styles.header}>We're here to help</Text>
+        <Text style={styles.header}>Estimated total spend</Text>
+        <TabBarSimple
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
+        <ViewPagerSimple
+          selectedIndex={selectedIndex}
+          setSelectedIndex={setSelectedIndex}
+        />
+      </View>
+      <View style={styles.box}>
+        <Text style={styles.header}>Ways to get additional support</Text>
         <Text style={styles.body}>
-          If you’d like more support on your budget, you can reach out to us.
+          If you’d like more support on your energy bills, we’re here to support
+          you.{" "}
         </Text>
         <TouchableOpacity
           style={styles.button}
-          // onPress={() => navigation.navigate("Analytics")}
+          onPress={() => Linking.openURL('https://www.boostpower.co.uk/help/how-to-save-money/boost-energy-fund')}
         >
           <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
-            Get in touch
+            Find out ways we can help
           </Text>
         </TouchableOpacity>
       </View>
