@@ -11,10 +11,18 @@ import TabBarSimple from "./../molecules/top-nav";
 import React from "react";
 import ViewPagerSimple from "./../molecules/schedule-pager.js";
 import { useNavigation } from "@react-navigation/core";
+import { UsageTimeContainer } from "../organisms/usage-time-container";
 
 const InsightScreen = ({ insightData }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const navigation = useNavigation();
+
+  const { month } = insightData;
+
+  const monthPercentageBudget =
+    month?.budgetSoFarInPeriod.moneyGBP / month?.actualSoFarInPeriod.moneyGBP;
+
+  const { budgetAndActualHistory } = month;
 
   if (!insightData) return <Text> Please set a Budget</Text>;
   return (
@@ -53,11 +61,33 @@ const InsightScreen = ({ insightData }) => {
           </Text>
         </TouchableOpacity>
       </View>
+      <View style={styles.monthBox}>
+        <Text style={styles.text}>Spend in £</Text>
+        <ScrollView directionalLockEnabled={true} style={{ height: 250 }}>
+          {budgetAndActualHistory.map((item, i) => {
+            let percentage = (item.actualGBP / item.budgetGBP) * 100;
+            if (percentage > 100) {
+              percentage = 100;
+            }
+            console.log({ percentage });
+            return (
+              <UsageTimeContainer
+                key={item.month}
+                time={item.month.substring(0, 3).toUpperCase()}
+                percentage={percentage}
+                budgetAmount={item.budgetGBP.toFixed(0)}
+                actualAmount={item.actualGBP.toFixed(0)}
+              />
+            );
+          })}
+        </ScrollView>
+      </View>
+
       <View style={styles.box}>
         <Text style={styles.header}>Ways to get additional support</Text>
         <Text style={styles.body}>
           If you’d like more support on your energy bills, we’re here to support
-          you.{" "}
+          you.
         </Text>
         <TouchableOpacity
           style={styles.button}
@@ -123,6 +153,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     fontWeight: "400",
     paddingBottom: 40,
+  },
+  monthBox: {
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+    marginTop: 20,
+    height: 300,
+    marginHorizontal: 10,
+    backgroundColor: "white",
+    borderRadius: 10,
+    shadowColor: "gray",
+    shadowRadius: 5,
+    shadowOpacity: 10,
+    shadowOffset: {
+      width: 5,
+      height: 5,
+    },
   },
   button: {
     height: 53,
