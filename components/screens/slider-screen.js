@@ -14,9 +14,9 @@ import { RadioButton } from "react-native-paper";
 import { EstimatedAmount } from "../atoms/estimated-amount";
 import { SliderTemplate } from "../templates/information-template";
 import LoadingScreen from "./loading-screen";
-import { getBudgetFormData } from "./../../functions/energy-api";
+import { getBudgetFormData, postInsightData, getTrackData } from "./../../functions/energy-api";
 
-const SliderScreen = () => {
+const SliderScreen = ({setInsightData}) => {
   const [checked, setChecked] = useState("weekly");
   const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
@@ -26,9 +26,21 @@ const SliderScreen = () => {
   const [monthFormData, setMonthFormData] = useState(false);
   const [weekFormData, setWeekFormData] = useState(false);
 
-  const budgetSet = () => {
+  const [formData, setFormData] = useState();
+
+  const budgetSet = async () => {
     setLoading(true);
-    setTimeout(() => {
+    setTimeout(async() => {
+      const trackRes = await postInsightData("sam.roth@ovoenergy.com", formData.showerLength, formData.thermoTemp, formData.washingTemp);
+
+      const trackWeekRes = await getTrackData("sam.roth@ovoenergy.com", "week");
+      const trackMonthRes = await getTrackData("sam.roth@ovoenergy.com", "month");
+
+      setInsightData({
+        week: trackWeekRes.data,
+        month: trackMonthRes.data,
+      });
+
       setLoading(false);
       navigation.navigate("Budget Tracker");
     }, 1000);
@@ -61,22 +73,22 @@ const SliderScreen = () => {
     totalMoney += showerLengthMinutes.increment.moneyGBP * showerLength;
     totalCarbon += showerLengthMinutes.increment.carbonCO2e * showerLength;
 
+
     totalMoney += thermostatTemperatureC.increment.moneyGBP * thermoTemp;
     totalCarbon += thermostatTemperatureC.increment.carbonCO2e * thermoTemp;
+
+
 
     totalMoney += washingTemperatureC.increment.moneyGBP * (washingTemp / 10) ;
     totalCarbon += washingTemperatureC.increment.carbonCO2e * (washingTemp / 10);
 
-    totalMoney += standingCharge.default.money;
-
+    totalMoney += standingCharge.default.moneyGBP;
     totalMoney += everythingElse.default.moneyGBP;
     totalCarbon += everythingElse.default.carbonCO2e;
 
-    Math.ceil(totalMoney);
-    Math.ceil(totalCarbon);
-
     setEstimatedMoney(Math.ceil(totalMoney));
     setEstimatedCarbon(Math.ceil(totalCarbon));
+    setFormData({showerLength, thermoTemp, washingTemp});
   };
   if (loading) return <LoadingScreen />;
   return (

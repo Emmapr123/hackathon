@@ -18,11 +18,28 @@ export default function App() {
   const [isLoading, setLoading] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
 
+  const [insightData, setInsightData] = useState();
+
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
   }, []);
+
+  const SliderWithInsightData = () => {
+    return <SliderScreen insightData={insightData} setInsightData={setInsightData}/>
+  }
+
+  const InsightScreenWithInsightData = () => {
+    return <InsightScreen insightData={insightData} setInsightData={setInsightData}/>
+  }
+
+  const GreenLightScreenWithInsightData = () => {
+    return <GreenLightScreen insightData={insightData} setInsightData={setInsightData}/>
+  }
+
+  console.log({insightData});
 
   if (isLoading) return <LoadingScreen />;
   if (!loggedIn) return <LoginScreen {...{ setLoggedIn }} />;
@@ -34,7 +51,7 @@ export default function App() {
           <Tab.Navigator>
             <Tab.Screen
               name="Settings"
-              component={SliderScreen}
+              component={SliderWithInsightData}
               options={{
                 activeTintColor: "#e91e63",
                 tabBarLabel: "Set Budget",
@@ -51,7 +68,7 @@ export default function App() {
             />
             <Tab.Screen
               name="Budget Tracker"
-              component={InsightScreen}
+              component={InsightScreenWithInsightData}
               options={{
                 activeTintColor: "#e91e63",
                 tabBarLabel: "Track Budget",
@@ -68,7 +85,7 @@ export default function App() {
             />
             <Tab.Screen
               name="Analytics"
-              component={GreenLightScreen}
+              component={GreenLightScreenWithInsightData}
               options={{
                 tabBarLabelPosition: "below-icon",
                 activeTintColor: "#e91e63",
