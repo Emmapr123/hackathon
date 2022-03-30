@@ -46,13 +46,13 @@ const InsightItem = ({ data, insights }) => {
         />
       </View>
       <View style={{ height: 40, marginTop: -100, alignItems: "center" }}>
-        <LottieView
+        {insights.actual < insights.budget && <LottieView
           resizeMode={"cover"}
           style={{ height: 50 }}
           source={require("./../../assets/ovo-heart.json")}
           autoPlay
           loop
-        />
+        />}
       </View>
       <Button
         onPress={() => setVisible(true)}

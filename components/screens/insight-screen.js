@@ -69,9 +69,6 @@ const InsightScreen = ({ insightData }) => {
             if (percentage > 100) {
               percentage = 100;
             }
-
-            console.log(item.month);
-            console.log({ percentage });
             return item.month === "March" ? undefined : (
               <UsageTimeContainer
                 key={item.month}
