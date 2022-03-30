@@ -94,7 +94,7 @@ const SliderScreen = () => {
             style={styles.button}
             onPress={() => setModalVisible(true)}
           >
-            <Text style={{ color: "white", fontSize: 28, fontWeight: "700" }}>
+            <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
               Set budget
             </Text>
           </TouchableOpacity>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginHorizontal: 10,
     backgroundColor: "white",
-    borderRadius: 10,
+    borderRadius: 5,
     shadowColor: "gray",
     shadowRadius: 10,
     shadowOpacity: 10,

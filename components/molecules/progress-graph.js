@@ -3,30 +3,51 @@ import { ProgressCircle } from "react-native-svg-charts";
 import { Text, Layout, Card } from "@ui-kitten/components";
 import { StyleSheet, View } from "react-native";
 
-const RemainingBudget = ({progress}) => {
+const RemainingBudget = ({ progress }) => {
   return (
     <View>
       <View style={{ position: "relative" }}>
-        <View style={{ position: "absolute", left: "40%", top: "30%" }}>
-          <Text category="h5">£150</Text>
-          <Text category="h6">left of £200</Text>
+        <View style={{ position: "absolute", left: "40%", bottom: 0 }}>
+          <Text
+            style={{
+              fontWeight: "700",
+              fontSize: 20,
+              color:
+                progress < 0.7 ? "#0D8426" : progress < 1 ? "orange" : "red",
+              opacity: progress <= 1 ? 1 : 0.5,
+            }}
+          >
+            £150
+          </Text>
+          <Text style={{ fontSize: 14, fontWeight: "400" }}>
+            left of for 6 days
+          </Text>
         </View>
         <View>
           <ProgressCircle
-            style={{ height: 200 }}
-            progress={progress}
-            progressColor={progress < 0.7 ? "#0D8426" : 'orange' }
+            style={{ height: 150, opacity: progress <= 1 ? 1 : 0.3 }}
+            progress={progress > 1 ? 1 : progress}
+            progressColor={
+              progress < 0.7 ? "#0D8426" : progress < 1 ? "orange" : "red"
+            }
             startAngle={-Math.PI * 0.8}
             endAngle={Math.PI * 0.8}
           />
         </View>
       </View>
-      {progress < 0.7 ? <Card style={styles.card} status="success">
-        <Text>Looks like you're in budget, good job!</Text>
-      </Card> :
-      <Card style={styles.card} status="warning">
-        <Text>You might be out of budget soon</Text>
-      </Card> }
+      {progress < 0.7 ? (
+        <Card style={styles.card} status="success">
+          <Text>Looks like you're in budget, good job!</Text>
+        </Card>
+      ) : progress < 1 ? (
+        <Card style={styles.card} status="warning">
+          <Text>You might be out of budget soon</Text>
+        </Card>
+      ) : (
+        <Card style={styles.card} status="danger">
+          <Text>You are over budget for this month</Text>
+        </Card>
+      )}
     </View>
   );
 };

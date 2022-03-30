@@ -45,13 +45,13 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex }) => {
 const styles = StyleSheet.create({
   tab: {
     height: 200,
-    width: "95%",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 50
+    backgroundColor: "white",
   },
   text: {
-    fontSize: 24,
+    fontSize: 14,
+    marginTop: 10
   },
 });
 
