@@ -1,4 +1,4 @@
-import { Image, ScrollView, StyleSheet, View } from "react-native";
+import { Image, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@ui-kitten/components";
 import TabBarSimple from "./../molecules/top-nav";
 import React from "react";
@@ -22,7 +22,7 @@ const InsightScreen = () => {
       </View>
       <View style={styles.questionsBox}>
         <Text>This months budget</Text>
-        <RemainingBudget progress={0.7} />
+        <RemainingBudget progress={0.3} />
       </View>
       <TabBarSimple
         selectedIndex={selectedIndex}
@@ -35,10 +35,17 @@ const InsightScreen = () => {
       <View style={styles.box}>
         <Text style={styles.header}>Dig into your insight</Text>
         <Text style={styles.body}>
-          {" "}
           It looks like you’ve used more heating this month compared to last
-          month.{" "}
+          month.
         </Text>
+        <TouchableOpacity
+            style={styles.button}
+            onPress={() => setModalVisible(true)}
+          >
+            <Text style={{ color: "white", fontSize: 28, fontWeight: "700" }}>
+              Set budget
+            </Text>
+          </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -101,10 +108,19 @@ const styles = StyleSheet.create({
   body: {
     fontSize: 18,
     marginTop: 12,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     fontWeight: "400",
     paddingBottom: 40,
   },
+  button: {
+    height: 53,
+    width: "95%",
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+    backgroundColor: "#0D8426",
+    marginTop: 10,
+  }
 });
 
 export default InsightScreen;

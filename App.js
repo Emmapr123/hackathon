@@ -1,18 +1,28 @@
-import { StatusBar } from "expo-status-bar";
-import { Image, StyleSheet, View } from "react-native";
-import * as eva from "@eva-design/eva";
-import { ApplicationProvider, IconRegistry } from "@ui-kitten/components";
-import BottomNavigationTabThemingShowcase from "./components/BottomNav";
-import { EvaIconsPack } from "@ui-kitten/eva-icons";
-import { SliderScreen } from "./components/screens/slider-screen";
-import InsightScreen from "./components/screens/insight-screen";
-import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import GreenLightScreen from "./components/screens/greenlight-screen";
+import { Image, StyleSheet, View } from 'react-native';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { SliderScreen } from './components/screens/slider-screen';
+import InsightScreen from './components/screens/insight-screen'
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import GreenLightScreen from './components/screens/greenlight-screen'
+import LoadingScreen from './components/screens/loading-screen'
+import React, {useEffect} from "react";
+
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const [isLoading, setLoading] = React.useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, 500);
+  }, []);
+
+  if( isLoading) return <LoadingScreen />
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
