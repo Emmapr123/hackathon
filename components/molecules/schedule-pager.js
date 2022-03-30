@@ -20,7 +20,7 @@ const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
       <RemainingBudget progress={monthPercentageBudget} spentAmount={month.actualSoFarInPeriod.moneyGBP} budgetAmount={month.budgetSoFarInPeriod.moneyGBP.toFixed(2)} periodLengthDays={month.periodLengthDays} periodElapsedDays={month.periodElapsedDays}/>
       </View>
         <Text style={styles.text}>Spend in £</Text>
-        <ScrollView directionalLockEnabled={true}>
+        <ScrollView directionalLockEnabled={true} style={{height: 250}}>
           {budgetAndActualHistory.map((item, i) => {
             let percentage = (item.actualGBP / item.budgetGBP ) * 100;
             if(percentage > 100){

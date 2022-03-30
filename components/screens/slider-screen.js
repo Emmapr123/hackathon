@@ -42,7 +42,7 @@ const SliderScreen = ({setInsightData, email}) => {
       });
 
       setLoading(false);
-      navigation.navigate("Budget Tracker");
+      navigation.navigate("Budget Buddy");
     }, 1000);
   };
 
@@ -148,7 +148,7 @@ const SliderScreen = ({setInsightData, email}) => {
           </View>
           <Text style={styles.questionsTitle}>Energy habits</Text>
           <Text style={styles.questions}>
-            We’ll ask you a few questions on your energy habits to try an
+            We’ll ask you a few questions on your energy habits to try and
             calculate a set budget for you.
           </Text>
           <SliderTemplate
@@ -156,7 +156,7 @@ const SliderScreen = ({setInsightData, email}) => {
             calcEstimatedAmount={calcEstimatedAmount}
           />
           <Text style={styles.questions}>
-            Here’s what your budget looks like for the month based on the energy
+            Here’s what your budget looks like for the month based on your energy
             habit inputs
           </Text>
           <Text>{checked}</Text>

@@ -12,11 +12,11 @@ import React from "react";
 import ViewPagerSimple from "./../molecules/schedule-pager.js";
 import { useNavigation } from "@react-navigation/core";
 
-const InsightScreen = ({insightData}) => {
+const InsightScreen = ({ insightData }) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const navigation = useNavigation();
 
-  if(!insightData) return <Text> Please set a Budget</Text>
+  if (!insightData) return <Text> Please set a Budget</Text>;
   return (
     <ScrollView>
       <Image
@@ -24,16 +24,16 @@ const InsightScreen = ({insightData}) => {
         style={{ position: "absolute" }}
       />
       <View>
-        <Text style={styles.title}>Track you budget</Text>
+        <Text style={styles.title}>Track your budget</Text>
         <Text style={styles.subTitle}>
-          Check your energy budget and see a breakdown on
+          Here's how you're doing against your budget
         </Text>
       </View>
 
       <View style={styles.box}>
         <Text style={styles.header}>Monthly Estimate</Text>
         <ViewPagerSimple
-        insightData={insightData}
+          insightData={insightData}
           selectedIndex={1}
           setSelectedIndex={setSelectedIndex}
         />
@@ -46,7 +46,7 @@ const InsightScreen = ({insightData}) => {
         </Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Analytics")}
+          onPress={() => navigation.navigate("Insights")}
         >
           <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
             View other energy insights
@@ -61,7 +61,11 @@ const InsightScreen = ({insightData}) => {
         </Text>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => Linking.openURL('https://www.boostpower.co.uk/help/how-to-save-money/boost-energy-fund')}
+          onPress={() =>
+            Linking.openURL(
+              "https://www.boostpower.co.uk/help/how-to-save-money/boost-energy-fund"
+            )
+          }
         >
           <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>
             Find out ways we can help

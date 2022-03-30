@@ -50,7 +50,7 @@ export default function App() {
         <NavigationContainer>
           <Tab.Navigator>
             <Tab.Screen
-              name="Settings"
+              name="Set Budget"
               component={SliderWithInsightData}
               options={{
                 activeTintColor: "#e91e63",
@@ -67,11 +67,11 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              name="Budget Tracker"
+              name="Budget Buddy"
               component={InsightScreenWithInsightData}
               options={{
                 activeTintColor: "#e91e63",
-                tabBarLabel: "Track Budget",
+                tabBarLabel: "Budget Buddy",
                 tabBarIcon: () => {
                   return (
                     <Image
@@ -84,7 +84,7 @@ export default function App() {
               }}
             />
             <Tab.Screen
-              name="Analytics"
+              name="Insights"
               component={GreenLightScreenWithInsightData}
               options={{
                 tabBarLabelPosition: "below-icon",

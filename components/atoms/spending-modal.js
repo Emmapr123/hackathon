@@ -14,7 +14,7 @@ const SpendingModal = ({ modalVisible, getModalVisible }) => {
 
   const navigate = () => {
     getModalVisible(false);
-    navigation.navigate("Budget Tracker");
+    navigation.navigate("Budget Buddy");
   };
 
   return (
