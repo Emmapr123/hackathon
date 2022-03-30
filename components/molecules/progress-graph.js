@@ -13,7 +13,7 @@ const RemainingBudget = ({ progress }) => {
               fontWeight: "700",
               fontSize: 20,
               color:
-                progress < 0.7 ? "#0D8426" : progress < 1 ? "orange" : "red",
+                progress < 0.7 ? "#6BBC26" : progress < 1 ? "orange" : "red",
               opacity: progress <= 1 ? 1 : 0.5,
             }}
           >
@@ -28,7 +28,7 @@ const RemainingBudget = ({ progress }) => {
             style={{ height: 150, opacity: progress <= 1 ? 1 : 0.3 }}
             progress={progress > 1 ? 1 : progress}
             progressColor={
-              progress < 0.7 ? "#0D8426" : progress < 1 ? "orange" : "red"
+              progress < 0.7 ? "#6BBC26" : progress < 1 ? "orange" : "red"
             }
             startAngle={-Math.PI * 0.8}
             endAngle={Math.PI * 0.8}

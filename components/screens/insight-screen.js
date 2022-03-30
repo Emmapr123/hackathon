@@ -27,7 +27,7 @@ const InsightScreen = () => {
         </Text>
       </View>
       <View style={styles.questionsBox}>
-        <RemainingBudget progress={1.4} />
+        <RemainingBudget progress={0.4} />
       </View>
       <View style={styles.box}>
         <Text style={styles.header}>Estimated total spend</Text>
