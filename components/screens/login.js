@@ -7,12 +7,16 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { getSuccesfullLogin } from "../../functions/energy-api";
 
-const LoginScreen = ({ setLoggedIn }) => {
+const LoginScreen = ({ setLoggedIn, setLoginDetails }) => {
   const [email, setEmail] = useState("");
+  const [pw, setPw] = useState('')
 
-  const login = () => {
-    setLoggedIn(true);
+  const login = async () => {
+    const success = await getSuccesfullLogin(email);
+    if (success) setLoggedIn(true);
+    setLoginDetails(email)
   };
 
   return (
@@ -36,8 +40,9 @@ const LoginScreen = ({ setLoggedIn }) => {
 
         <TextInput
           style={styles.input}
-          onChangeText={(event) => console.log(event)}
-          value={""}
+          onChangeText={(event) => setPw(event)}
+          value={pw}
+          secureTextEntry={true}
         />
         <TouchableOpacity style={styles.button} onPress={() => login()}>
           <Text style={{ color: "white", fontSize: 18, fontWeight: "700" }}>

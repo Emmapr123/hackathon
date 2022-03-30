@@ -17,9 +17,9 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   const [isLoading, setLoading] = useState(true);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loginDetails, setLoginDetails] = useState('')
 
   const [insightData, setInsightData] = useState();
-
 
   useEffect(() => {
     setTimeout(() => {
@@ -28,21 +28,21 @@ export default function App() {
   }, []);
 
   const SliderWithInsightData = () => {
-    return <SliderScreen insightData={insightData} setInsightData={setInsightData}/>
+    return <SliderScreen insightData={insightData} setInsightData={setInsightData} email={loginDetails} />
   }
 
   const InsightScreenWithInsightData = () => {
-    return <InsightScreen insightData={insightData} setInsightData={setInsightData}/>
+    return <InsightScreen insightData={insightData} setInsightData={setInsightData} email={loginDetails}/>
   }
 
   const GreenLightScreenWithInsightData = () => {
-    return <GreenLightScreen insightData={insightData} setInsightData={setInsightData}/>
+    return <GreenLightScreen insightData={insightData} setInsightData={setInsightData} email={loginDetails}/>
   }
 
   console.log({insightData});
 
   if (isLoading) return <LoadingScreen />;
-  if (!loggedIn) return <LoginScreen {...{ setLoggedIn }} />;
+  if (!loggedIn) return <LoginScreen {...{ setLoggedIn, setLoginDetails }} />;
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
