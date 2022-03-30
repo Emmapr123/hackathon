@@ -7,53 +7,30 @@ import RemainingBudget from "../molecules/progress-graph";
 const ViewPagerSimple = ({ selectedIndex, setSelectedIndex, insightData }) => {
   if(!insightData) return <Text> No insight data</Text>
 
-  const {week, month } = insightData;
-
-  const weekPercentageBudget =  week?.budgetSoFarInPeriod.moneyGBP / week?.actualSoFarInPeriod.moneyGBP;
-  const remainingDays =  week?.periodLengthDays - week?.periodElapsedDays
+  const { month } = insightData;
 
   const monthPercentageBudget =  month?.budgetSoFarInPeriod.moneyGBP / month?.actualSoFarInPeriod.moneyGBP;
+
+  const {budgetAndActualHistory} = month;
+
+  console.log(budgetAndActualHistory);
   return (
-    <ViewPager
-      selectedIndex={selectedIndex}
-      onSelect={(index) => setSelectedIndex(index)}
-    >
-      <Layout style={styles.tab} level="2">
+    <Layout style={styles.tab} level="2">
       <View style={styles.questionsBox}>
-        <RemainingBudget progress={weekPercentageBudget} spentAmount={week.actualSoFarInPeriod.moneyGBP} budgetAmount={week.budgetSoFarInPeriod.moneyGBP} remainingDays={remainingDays}/>
+      <RemainingBudget progress={monthPercentageBudget} spentAmount={month.actualSoFarInPeriod.moneyGBP} budgetAmount={month.budgetSoFarInPeriod.moneyGBP.toFixed(2)} periodLengthDays={month.periodLengthDays} periodElapsedDays={month.periodElapsedDays}/>
       </View>
         <Text style={styles.text}>Spend in £</Text>
         <ScrollView directionalLockEnabled={true}>
-          <UsageTimeContainer time={"Mon"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Tue"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Wed"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Thu"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Fri"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Sat"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Sun"} percentage={35} amount={3.5} />
+          {budgetAndActualHistory.map((item, i) => {
+            let percentage = (item.actualGBP / item.budgetGBP ) * 100;
+            if(percentage > 100){
+              percentage = 100;
+            }
+            console.log({percentage});
+            return <UsageTimeContainer key={item.month} time={item.month} percentage={percentage} budgetAmount={item.budgetGBP.toFixed(2)} actualAmount={item.actualGBP.toFixed(2)} />
+          })}
         </ScrollView>
       </Layout>
-      <Layout style={styles.tab} level="2">
-      <View style={styles.questionsBox}>
-      <RemainingBudget progress={monthPercentageBudget} spentAmount={month.actualSoFarInPeriod.moneyGBP} budgetAmount={month.budgetSoFarInPeriod.moneyGBP} remainingDays={remainingDays}/>
-      </View>
-        <Text style={styles.text}>Spend in £</Text>
-        <ScrollView directionalLockEnabled={true}>
-          <UsageTimeContainer time={"Jan"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Feb"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Mar"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Apr"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"May"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Jun"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Jul"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Aug"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Sep"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Oct"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Nov"} percentage={35} amount={3.5} />
-          <UsageTimeContainer time={"Dec"} percentage={35} amount={3.5} />
-        </ScrollView>
-      </Layout>
-    </ViewPager>
   );
 };
 
@@ -75,7 +52,7 @@ const styles = StyleSheet.create({
     },
   },
   tab: {
-    maxHeight: 750,
+    maxHeight: 950,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",

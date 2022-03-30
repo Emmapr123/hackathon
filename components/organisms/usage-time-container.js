@@ -1,15 +1,16 @@
 import { View, Text, StyleSheet } from "react-native";
 import { UsageBar } from "../molecules/usage-bar";
 
-const UsageTimeContainer = ({ time, percentage, amount }) => {
+const UsageTimeContainer = ({ time, percentage, budgetAmount, actualAmount }) => {
   return (
     <View style={styles.container}>
-      <View style={{ width: 40 }}>
+      <View style={{ width: 60 }}>
         <Text style={styles.text}>{time}</Text>
       </View>
       <UsageBar {...{ percentage }} />
-      <View style={{ width: 40 }}>
-        <Text stlye={styles.text}>£{amount}</Text>
+      <View style={{ width: 60 }}>
+        <Text stlye={styles.text}>Budget: £{budgetAmount} </Text>
+        <Text stlye={styles.text}>Actual: £{actualAmount} </Text>
       </View>
     </View>
   );

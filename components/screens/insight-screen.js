@@ -31,14 +31,10 @@ const InsightScreen = ({insightData}) => {
       </View>
 
       <View style={styles.box}>
-        <Text style={styles.header}>Estimated total spend</Text>
-        <TabBarSimple
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
+        <Text style={styles.header}>Monthly Estimate</Text>
         <ViewPagerSimple
         insightData={insightData}
-          selectedIndex={selectedIndex}
+          selectedIndex={1}
           setSelectedIndex={setSelectedIndex}
         />
       </View>
@@ -56,17 +52,6 @@ const InsightScreen = ({insightData}) => {
             View other energy insights
           </Text>
         </TouchableOpacity>
-      </View>
-      <View style={styles.box}>
-        <Text style={styles.header}>Estimated total spend</Text>
-        <TabBarSimple
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
-        <ViewPagerSimple
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
       </View>
       <View style={styles.box}>
         <Text style={styles.header}>Ways to get additional support</Text>
